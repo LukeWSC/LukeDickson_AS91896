@@ -1,0 +1,103 @@
+start
+boss = -1
+in_intro = 1
+print(Describe game)
+while start  =0 
+    input are you ready Y/n
+while in_intro = 1
+    If p1_redo = y
+        boss = input (Choose final boss
+        1
+        2
+        3
+        4
+        5
+        6
+        7)
+
+        elif boss = 1 
+            boss_redo = input(you choose 1 do you want to choose another? Y/N)
+
+        elif boss = 2 print ( you choose 2)
+
+print ("talk about what every stat does")
+class 1 = input("""Player 1 choose starting class
+Mage
+    Very low hp
+    High mana
+    Good Arcane
+    Low strength
+    Low dex
+    Equipment: Wand, Dagger, 3 random spells
+
+Nimble
+    Low hp
+    Low mana
+    Low Arcane
+    Very low strength
+    High dex
+    Equipment: two dex weapons, wand
+
+Barbarian
+    High hp
+    Low mana
+    Low Arcane
+    High strength
+    Low dex
+    Equipment: strength weapon
+
+Priest
+    Mid health 
+    High mana 
+    Mid arcane
+    Low strength
+    Low dex 
+    
+Warrior
+    All stats are mid 5 each
+
+Bloody
+    High hp 9
+    Very low mana 1
+    High arcane 6
+    Low strength 4
+    Slightly high dex 5
+    Equipment: two bleedable weapons, wand, blood spells
+
+Fated
+    Randomly spread 25 levels
+    Massive increase in random damage RANGE
+    Equipment: No base damage danger
+
+Prodigy
+    Mid health 5
+    Very low mana 2
+    Extremely high arcane 12
+    Low strength 3
+    Low dex 3
+
+    Who do you choose?: 
+""")
+If class = Mage
+    set stats to this classes stats
+    set equipment to starting equipment
+    print all this data
+    
+
+elif
+    repeat above to another class
+
+elif
+    etc
+
+elif
+
+elif
+
+A repeat of the code above for p2
+    A  B  C  D  E
+ 1    [{}][{}][{}]
+ 2 [{}][{}][{}][{}][{}]
+ 3 [{}][{}][O][{}][{}]
+ 4 [{}][{}][{}][{}][{}]
+ 5    [{}][{}][{}]
