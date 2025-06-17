@@ -21,4 +21,5 @@ while in_intro == 1:
         """))
         print(boss)
         if boss in range (1,7):
-            boss_redo = input("you choose 1 do you want to choose a different one? Y/N")
+            boss_redo = input("you choose {} do you want to choose a different one? Y/N".format(boss))
+        elif boss in ("Random"):
