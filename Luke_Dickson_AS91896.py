@@ -57,11 +57,11 @@ while in_intro == 1:
             Equipment: two dex weapons, wand
 
             Barbarian
-            High hp 7
-            Low mana 
-            Low Arcane
-            High strength 8
-            Low dex
+            High hp 8
+            Low mana 2 
+            Low Arcane 2 
+            High strength 9
+            Low dex 4 
             Equipment: strength weapon
 
             Priest
@@ -98,7 +98,7 @@ while in_intro == 1:
             """.format(player))
             if player_class in ("Mage","1","mage"):
                 if player == 1:
-                    p1_mana
+                    p1_hp = ("stats coming soon")
                 print ("all this data")
                 redo_class = input("Do you want to choose a different class? Y/N")
                 redo_class = 1
