@@ -32,13 +32,15 @@ while in_intro == 1:
             print("Please put in a usable number.")
             boss_redo = ("y")
 
-
+    if boss_redo not in ("y","Y","Yes","yes"):
+        print ("""-------------
+               """)
         print ("Talk about what every stat does")
         redo_class = 1
-    if redo_class in (1,"Y","y"):
-        redo_class = 0
-        class1 = input("""Player {} choose starting class
-        Mage
+        if redo_class in (1,"Y","y"):
+            redo_class = 0
+            player_class = input("""Player {} choose starting class
+            Mage
             Very low hp
             High mana
             Good Arcane
@@ -46,7 +48,7 @@ while in_intro == 1:
             Low dex
             Equipment: Wand, Dagger, 3 random spells
 
-        Nimble
+            Nimble
             Low hp
             Low mana
             Low Arcane
@@ -54,25 +56,25 @@ while in_intro == 1:
             High dex
             Equipment: two dex weapons, wand
 
-        Barbarian
-            High hp
-            Low mana
+            Barbarian
+            High hp 7
+            Low mana 
             Low Arcane
-            High strength
+            High strength 8
             Low dex
             Equipment: strength weapon
 
-        Priest
-            Mid health 
-            High mana 
-            Mid arcane
-            Low strength
-            Low dex 
+            Priest
+            Mid health 6
+            High mana 8
+            Mid arcane 5
+            Low strength 3
+            Low dex  3
     
-        Warrior
+            Warrior
             All stats are mid 5 each
 
-        Bloody
+            Bloody
             High hp 9
             Very low mana 1
             High arcane 6
@@ -80,27 +82,28 @@ while in_intro == 1:
             Slightly high dex 5
             Equipment: two bleedable weapons, wand, blood spells
 
-        Fated
+            Fated
             Randomly spread 25 levels
             Massive increase in random damage RANGE
             Equipment: No base damage danger
 
-        Prodigy
+            Prodigy
             Mid health 5
             Very low mana 2
             Extremely high arcane 12
             Low strength 3
             Low dex 3
 
-        Who do you choose?: 
-        """.format(player))
-        if class1 in ("Mage","1"):
-            mana = 1
-            print ("all this data")
-            redo_class = input("Do you want to choose a different class? Y/N")
-            redo_class = 1
-            if redo_class not in ("y","Y"):
-                print ("huh")
+            Who do you choose?: 
+            """.format(player))
+            if player_class in ("Mage","1","mage"):
+                if player == 1:
+                    p1_mana
+                print ("all this data")
+                redo_class = input("Do you want to choose a different class? Y/N")
+                redo_class = 1
+                if redo_class not in ("y","Y"):
+                    player = 2
 
-        elif class1 in (""):
-            ("repeat above to another class")
+            elif class1 in (""):
+                ("repeat above to another class")
