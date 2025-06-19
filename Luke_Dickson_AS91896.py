@@ -1,3 +1,4 @@
+#Set up
 boss = 1
 import random
 bosses = ["1","2","3","5","6","7"]
@@ -9,6 +10,7 @@ print("Describe game")
 while start not in("y"):
     start = input("Are you ready Y/N ")
 while in_intro == 1:
+    #Choosing boss
     if boss_redo in ("y","Y","Yes","yes"):
         boss_redo = ("n")
         boss = 1
@@ -32,6 +34,7 @@ while in_intro == 1:
             print("Please put in a usable number.")
             boss_redo = ("y")
 
+#Choosing class
     if boss_redo not in ("y","Y","Yes","yes"):
         print ("""-------------
                """)
@@ -41,19 +44,19 @@ while in_intro == 1:
             redo_class = 0
             player_class = input("""Player {} choose starting class
             Mage
-            Very low hp
-            High mana
-            Good Arcane
-            Low strength
-            Low dex
-            Equipment: Wand, Dagger, 3 random spells
+            Low hp 3
+            High mana 10
+            Good Arcane 6
+            Low strength 3
+            Low dex 3
+            Equipment: Wand, Dagger, 3 spells
 
             Nimble
-            Low hp
+            Low hp 
             Low mana
             Low Arcane
             Very low strength
-            High dex
+            High dex 
             Equipment: two dex weapons, wand
 
             Barbarian
@@ -96,10 +99,24 @@ while in_intro == 1:
 
             Who do you choose?: 
             """.format(player))
-            if player_class in ("Mage","1","mage"):
+            #Mage
+            if player_class in ("Mage","1","mage","one","One"):
                 if player == 1:
-                    p1_hp = ("stats coming soon")
-                print ("all this data")
+                    p1_hp = 3
+                    p1_mana = 10
+                    p1_arcane = 9
+                    p1_strength = 3
+                    p1_dex = 3
+                    p1_main = ("Wizard Wand")
+                    p1_offhand = ("Dagger")
+                    p1_spells = ["fireball","shield",""]
+                print ("""Mage
+    Low hp 3
+    High mana 10
+    Good Arcane 6
+    Low strength 3
+    Low dex 3
+    Equipment: Wand, Dagger, 3 spells""")
                 redo_class = input("Do you want to choose a different class? Y/N")
                 redo_class = 1
                 if redo_class not in ("y","Y"):
