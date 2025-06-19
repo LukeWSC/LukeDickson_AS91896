@@ -43,61 +43,55 @@ while in_intro == 1:
         if redo_class in (1,"Y","y"):
             redo_class = 0
             player_class = input("""Player {} choose starting class
-            Mage
-            Low hp 3
-            High mana 10
-            Good Arcane 6
-            Low strength 3
-            Low dex 3
-            Equipment: Wand, Dagger, 3 spells
+1 Mage
 
-            Nimble
-            Low hp 
-            Low mana
-            Low Arcane
-            Very low strength
-            High dex 
-            Equipment: two dex weapons, wand
+2 Nimble
+    Low hp 
+    Low mana
+    Low Arcane
+    Very low strength
+    High dex 
+    Equipment: two dex weapons, wand
 
-            Barbarian
-            High hp 8
-            Low mana 2 
-            Low Arcane 2 
-            High strength 9
-            Low dex 4 
-            Equipment: strength weapon
+3 Barbarian
+    High hp 8
+    Low mana 2 
+    Low Arcane 2 
+    High strength 9
+    Low dex 4 
+    Equipment: strength weapon
 
-            Priest
-            Mid health 6
-            High mana 8
-            Mid arcane 5
-            Low strength 3
-            Low dex  3
+4 Priest
+    Mid health 6
+    High mana 8
+    Mid arcane 5
+    Low strength 3
+    Low dex  3
     
-            Warrior
-            All stats are mid 5 each
+5 Warrior
+    All stats are mid 5 each
 
-            Bloody
-            High hp 9
-            Very low mana 1
-            High arcane 6
-            Low strength 4
-            Slightly high dex 5
-            Equipment: two bleedable weapons, wand, blood spells
+6 Bloody
+    High hp 9
+    Very low mana 1
+    High arcane 6
+    Low strength 4
+    Slightly high dex 5
+    Equipment: two bleedable weapons, wand, blood spells
 
-            Fated
-            Randomly spread 25 levels
-            Massive increase in random damage RANGE
-            Equipment: No base damage danger
+7 Fated
+    Randomly spread 25 levels
+    Massive increase in random damage RANGE
+    Equipment: No base damage danger
 
-            Prodigy
-            Mid health 5
-            Very low mana 2
-            Extremely high arcane 12
-            Low strength 3
-            Low dex 3
+8 Prodigy
+    Mid health 5
+    Very low mana 2
+    Extremely high arcane 12
+    Low strength 3
+    Low dex 3
 
-            Who do you choose?: 
+        Who do you choose?: 
             """.format(player))
             #Mage
             if player_class in ("Mage","1","mage","one","One"):
@@ -117,10 +111,18 @@ while in_intro == 1:
     Low strength 3
     Low dex 3
     Equipment: Wand, Dagger, 3 spells""")
-                redo_class = input("Do you want to choose a different class? Y/N")
-                redo_class = 1
+                if player == 2:
+                    p2_hp = 3
+                    p2_mana = 10
+                    p2_arcane = 9
+                    p2_strength = 3
+                    p2_dex = 3
+                    p2_main = ("Wizard Wand")
+                    p2_offhand = ("Dagger")
+                    p2_spells = ["fireball","shield",""]
+                redo_class = input("Do you want to choose a different class? Y/N ")
                 if redo_class not in ("y","Y"):
                     player = 2
 
-            elif class1 in (""):
+            elif player_class in ("Nimble","nimble","2","Two","two"):
                 ("repeat above to another class")
