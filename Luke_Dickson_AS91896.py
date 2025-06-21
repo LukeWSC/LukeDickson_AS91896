@@ -45,33 +45,19 @@ while in_intro == 1:
             player_class = input("""Player {} choose starting class
 1 Mage
 
-2 Nimble
-    Low hp 
-    Low mana
-    Low Arcane
-    Very low strength
-    High dex 
-    Equipment: two dex weapons, wand
+2 Barbarian
 
-3 Barbarian
-    High hp 8
-    Low mana 2 
-    Low Arcane 2 
-    High strength 9
-    Low dex 4 
-    Equipment: strength weapon
-
-4 Priest
+3 Priest
     Mid health 6
     High mana 8
     Mid arcane 5
     Low strength 3
     Low dex  3
     
-5 Warrior
+4 Warrior
     All stats are mid 5 each
 
-6 Bloody
+5 Bloody
     High hp 9
     Very low mana 1
     High arcane 6
@@ -79,21 +65,24 @@ while in_intro == 1:
     Slightly high dex 5
     Equipment: two bleedable weapons, wand, blood spells
 
-7 Fated
-    Randomly spread 25 levels
-    Massive increase in random damage RANGE
-    Equipment: No base damage danger
-
-8 Prodigy
+6 Prodigy
     Mid health 5
     Very low mana 2
     Extremely high arcane 12
     Low strength 3
     Low dex 3
 
-        Who do you choose?: 
-            """.format(player))
-            #Mage
+7 Fated
+    Randomly spread 25 levels
+    Massive increase in random damage RANGE
+    Equipment: No base damage danger
+
+8 Random
+
+    Who do you choose?: """.format(player))
+            print (""" 
+""")
+#Mage
             if player_class in ("Mage","1","mage","one","One"):
                 if player == 1:
                     p1_hp = 3
@@ -121,8 +110,43 @@ while in_intro == 1:
                     p2_offhand = ("Dagger")
                     p2_spells = ["fireball","shield",""]
                 redo_class = input("Do you want to choose a different class? Y/N ")
+                if player == 2:
+                    if redo_class in ("n","N","No","no"):
+                        break
                 if redo_class not in ("y","Y"):
                     player = 2
 
-            elif player_class in ("Nimble","nimble","2","Two","two"):
-                ("repeat above to another class")
+#Barbarian
+            elif player_class in ("Barbarian","barbarian","2","Two","two"):
+                if player == 1:
+                    p1_hp = 8
+                    p1_mana = 2
+                    p1_arcane = 2
+                    p1_strength = 9
+                    p1_dex = 4
+                    p1_main = ("Great axe")
+                print ("""Barbarian
+    High hp 8
+    Low mana 2 
+    Low Arcane 2 
+    High strength 9
+    Low dex 4 
+    Equipment: strength weapon""")
+                if player == 2:
+                    p2_hp = 8
+                    p2_mana = 2
+                    p2_arcane = 2
+                    p2_strength = 9
+                    p2_dex = 4
+                    p2_main = ("Great axe")
+                redo_class = input("Do you want to choose a different class? Y/N ")
+                if player == 2:
+                    if redo_class in ("n","N","No","no"):
+                        break
+                if redo_class not in ("y","Y"):
+                    player = 2
+
+#wrong input
+            else:
+                print("Please put in a usable variable")
+                redo_class = 1
