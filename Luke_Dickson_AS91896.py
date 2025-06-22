@@ -80,8 +80,7 @@ while in_intro == 1:
 8 Random
 
     Who do you choose?: """.format(player))
-            print (""" 
-""")
+            print (""" """)
 #Mage
             if player_class in ("Mage","1","mage","one","One"):
                 if player == 1:
@@ -150,3 +149,4 @@ while in_intro == 1:
             else:
                 print("Please put in a usable variable")
                 redo_class = 1
+
