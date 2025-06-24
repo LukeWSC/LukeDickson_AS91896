@@ -1,3 +1,34 @@
+test = 1
+time = 6
+print(test)
+c1 = 1 
+b2 = 1
+c2 = 1
+d2 = 1
+a3 = 1
+b3 = 1
+c3 = 1
+d3 = 1
+e3 = 1
+b4 = 1
+c4 = 1
+d4 = 1
+c5 = 1
+print("""
+           FIRE         Time {}
+       A  B  C  D  E    
+   1        [{}]             E
+A  2     [{}][{}][{}]          A
+I  3  [{}][{}][{}][{}][{}]       R
+R  4     [{}][{}][{}]     N    T
+   5        [{}]      W   E  H
+                       S
+           WATER
+""".format(time,c1,b2,c2,d2,a3,b3,c3,d3,e3,b4,c4,d4,c5))
+
+lock = 1
+while lock == 1:
+    lock = 1
 boss = 1
 boss_redo = ("y")
 start = ("n")
@@ -23,16 +54,3 @@ while in_intro == 1:
         if boss >= 1:
             boss_redo = input("you choose 1 do you want to choose another? Y/N")
         
-test = 1
-time = 10
-print(test)
-print("""    A  B  C  D  E    Time {}
- 1    [{}][{}][{}]                    
- 2 [{}][{}][{}][{}][{}]
- 3 [{}][{}][O][{}][{}]
- 4 [{}][{}][{}][{}][{}]
- 5    [{}][{}][{}]    N
-                 W   E
-                   S
-""".format(time,a1,b1,c1,d1,e1,a2,b2,c2,d2,e2,a3,b3,c3,d3,e3,a4,b4,c4,d4,e4,a5,b5,c5,d5,e5))
-

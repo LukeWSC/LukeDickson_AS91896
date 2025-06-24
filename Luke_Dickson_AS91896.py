@@ -5,11 +5,11 @@ bosses = ["1","2","3","5","6","7"]
 boss_redo = ("y")
 start = ("n")
 player = 1
-in_intro = 1
+in_intro = ("n")
 print("Describe game")
 while start not in("y"):
     start = input("Are you ready Y/N ")
-while in_intro == 1:
+while in_intro in ("n","N","No","no"):
     #Choosing boss
     if boss_redo in ("y","Y","Yes","yes"):
         boss_redo = ("n")
@@ -141,7 +141,28 @@ while in_intro == 1:
                 redo_class = input("Do you want to choose a different class? Y/N ")
                 if player == 2:
                     if redo_class in ("n","N","No","no"):
-                        break
+                        in_intro = input("Are you ready to begin? Y/N")
+                        if in_intro in ("y","Y","Yes","yes"):
+                            break
+                        if in_intro in ("n","N","No","no"):
+                            redo_where = input("""What do you want to redo?
+1: Final boss
+2: Player 1 class
+3: Player 2 class
+    """)
+                            if redo_where == 1:
+                                boss_redo = ("y")
+                            if redo_where == 2:
+                                player = 1
+                                redo_class == 1
+                            if redo_where == 3:
+                                player = 2
+                                redo_class == 1
+                            else:
+                                print("Please put in usable variables.")
+                                in_intro = ("n")
+                    else:
+                        print("please put in usable variables")
                 if redo_class not in ("y","Y"):
                     player = 2
 
@@ -149,4 +170,33 @@ while in_intro == 1:
             else:
                 print("Please put in a usable variable")
                 redo_class = 1
+
+#Map
+time = 3
+c1 = 1 
+b2 = 1
+c2 = 1
+d2 = 1
+a3 = 1
+b3 = 1
+c3 = 1
+d3 = 1
+e3 = 1
+b4 = 1
+c4 = 1
+d4 = 1
+c5 = 1
+print("""
+           FIRE         Time {}
+       A  B  C  D  E    
+   1        [{}]             E
+A  2     [{}][{}][{}]          A
+I  3  [{}][{}][U][{}][{}]       R
+R  4     [{}][{}][{}]     N    T
+   5        [{}]      W   E  H
+                       S
+           WATER
+""".format(time,c1,b2,c2,d2,a3,b3,c3,d3,e3,b4,c4,d4,c5))
+direction = input("Where do you go? N/E/S/W")
+player_location = ("c3")
 
