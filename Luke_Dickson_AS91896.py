@@ -187,7 +187,7 @@ c4 = 1
 d4 = 1
 c5 = 1
 print("""
-           FIRE         Time {}
+           FIRE         Time {15}
        A  B  C  D  E    
    1        [{}]             E
 A  2     [{}][{}][{}]          A
@@ -197,6 +197,25 @@ R  4     [{}][{}][{}]     N    T
                        S
            WATER
 """.format(time,c1,b2,c2,d2,a3,b3,c3,d3,e3,b4,c4,d4,c5))
-direction = input("Where do you go? N/E/S/W")
 player_location = ("c3")
+playing = 1
+while playing == 1:
 
+    #C3
+    if player_location == ("c3"):
+        direction = input("Where do you go? N/E/S/W")
+        if direction in ("N","n","North","north"):
+            player_location = ("c2")
+        if direction in ("S","s","South","south"):
+            player_location = ("c4")
+        if direction in ("E","e","East","east"):
+            player_location = ("d3")
+        if direction in ("W","w","West","west"):
+            player_location = ("b3")
+
+    #C2
+    if player_location == ("c2"):
+        if
+    
+
+    if player_location == ("c2"):
