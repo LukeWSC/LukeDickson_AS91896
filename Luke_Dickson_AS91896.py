@@ -63,7 +63,7 @@ while in_intro in ("n","N","No","no"):
     High arcane 6
     Low strength 4
     Slightly high dex 5
-    Equipment: two bleedable weapons, wand, blood spells
+    Equipment: bleedable weapon, wand, blood spells
 
 6 Prodigy
     Mid health 5
@@ -80,7 +80,7 @@ while in_intro in ("n","N","No","no"):
 8 Random
 
     Who do you choose?: """.format(player))
-            print (""" """)
+            print(""" """)
 #Mage
             if player_class in ("Mage","1","mage","one","One"):
                 if player == 1:
@@ -92,7 +92,7 @@ while in_intro in ("n","N","No","no"):
                     p1_main = ("Wizard Wand")
                     p1_offhand = ("Dagger")
                     p1_spells = ["fireball","shield",""]
-                print ("""Mage
+                print("""Mage
     Low hp 3
     High mana 10
     Good Arcane 6
@@ -172,22 +172,22 @@ while in_intro in ("n","N","No","no"):
                 redo_class = 1
 
 #Map
-time = 3
-c1 = 1 
+time = 16
+c1 = ("B")
 b2 = 1
 c2 = 1
 d2 = 1
-a3 = 1
+a3 = ("B")
 b3 = 1
 c3 = 1
 d3 = 1
-e3 = 1
+e3 = ("B")
 b4 = 1
 c4 = 1
 d4 = 1
-c5 = 1
+c5 = ("B")
 print("""
-           FIRE         Time {15}
+           FIRE         Time {}
        A  B  C  D  E    
    1        [{}]             E
 A  2     [{}][{}][{}]          A
@@ -201,21 +201,62 @@ player_location = ("c3")
 playing = 1
 while playing == 1:
 
+#Damage
+    if p1_main in ("Great axe"):
+        p1_base = 30
+        p1_main_bonus = p1_strength / 2
+    p1_second_base_damage_main = p1_base + p1_strength * 5
+
     #C3
     if player_location == ("c3"):
-        direction = input("Where do you go? N/E/S/W")
-        if direction in ("N","n","North","north"):
-            player_location = ("c2")
-        if direction in ("S","s","South","south"):
-            player_location = ("c4")
-        if direction in ("E","e","East","east"):
-            player_location = ("d3")
-        if direction in ("W","w","West","west"):
-            player_location = ("b3")
+        player_location = ("null")
+        resting = input("Do you move or rest?")
+        if resting in ("Rest","rest","Sleep","sleep","R","r","S","s"):
+            p1_current_hp = p1_hp * 5
+            p1_energy = p1_dex * 5 + 30
+            p1_current_mana = p1_mana * 5
+            time - 2
+            player_location = ("c3")
+        if resting in ("move","Move","M","m"):
+            direction = input("Where do you go? N/E/S/W ")
+            if direction in ("N","n","North","north"):
+                player_location = ("c2")
+            if direction in ("S","s","South","south"):
+                player_location = ("c4")
+            if direction in ("E","e","East","east"):
+                player_location = ("d3")
+            if direction in ("W","w","West","west"):
+                player_location = ("b3")
+            else:
+                print("Please put in a usable variable.")
+                player_location = ("c3")
+        else:
+                print("Please put in a usable variable.")
+                player_location = ("c3")
+
 
     #C2
     if player_location == ("c2"):
-        if
-    
-
-    if player_location == ("c2"):
+        time - 1
+        basic_fire_bosses = ["Fire Lizard","Flame Golem"]
+        enemy = random.choice(basic_fire_bosses)
+        if enemy in ("Fire Lizard"):
+            enemy_hp = 200
+            enemy_ac = 14
+            enemy_energy = 50
+            enemy_attacks = ["Spit flame", "Consume","Tail"]
+        while enemy in ("Fire Lizard"):
+            print("A Flame Lizard appears hp: {}  ac: {}  energy = {}".format(enemy_hp,enemy_ac,enemy_energy))
+        
+        #Player one action
+            p1_action =input("""Player 1 what do you do? 
+Attack?    Run?    Cast?    Inventory?    Skip?
+""")
+            if p1_action in ("Attack","Fight","attack","fight","f","F","A","a"):
+                p1_to_hit = (random.randrange(1, 20))
+                p1_to_hit + p1_main_bonus
+                if p1_to_hit >= 14:
+                    print("Hit!")
+                    enemy_hp -= p1_base + random.randrange(1, 60)
+                if p1_to_hit <= 14:
+                    print("Miss")

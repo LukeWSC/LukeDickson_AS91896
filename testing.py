@@ -1,19 +1,19 @@
 test = 1
 time = 6
 print(test)
-c1 = 1 
+c1 = ("B")
 b2 = 1
 c2 = 1
 d2 = 1
-a3 = 1
+a3 = ("B")
 b3 = 1
 c3 = 1
 d3 = 1
-e3 = 1
+e3 = ("B")
 b4 = 1
 c4 = 1
 d4 = 1
-c5 = 1
+c5 = ("B")
 print("""
            FIRE         Time {}
        A  B  C  D  E    
