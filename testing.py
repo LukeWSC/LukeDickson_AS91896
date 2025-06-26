@@ -29,18 +29,13 @@ R  4     [{}][{}][{}]     N    T
 lock = 1
 while lock == 1:
     lock = 1
-boss = 1
+#Choosing boss
+bosses = ["1","2","3","5","6","7"]
 boss_redo = ("y")
-start = ("n")
-in_intro = 1
-print("Describe game")
-while start not in("y"):
-    start = input("are you ready Y/N")
-while in_intro == 1:
-    if boss_redo in ("y"):
+    if boss_redo in ("y","Y","Yes","yes"):
         boss_redo = ("n")
         boss = 1
-        boss = int(input("""Choose final boss
+        boss = str(input("""Choose final boss
         1
         2
         3
@@ -51,6 +46,14 @@ while in_intro == 1:
         Random
         """))
         print(boss)
-        if boss >= 1:
-            boss_redo = input("you choose 1 do you want to choose another? Y/N")
-        
+        if boss in ("1","2","3","5","6","7","One","Two","Three","Four","Five","Six","Seven"):
+            boss_redo = input("You choose {} do you want to choose a different one? Y/N ".format(boss))
+        elif boss in ("Random","random"):
+            bosses = random.choice(bosses)
+            boss_redo = input("You got at random {} do you want to choose another? Y/N ".format(bosses))
+        else:
+            print("Please put in a usable number.")
+            boss_redo = ("y")
+    if boss_redo not in ("y","Y","Yes","yes"):
+        print ("""-------------
+               """)
