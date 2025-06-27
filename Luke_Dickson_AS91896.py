@@ -3,7 +3,8 @@ boss = 1
 import random
 start = ("n")
 player = 1
-redo_class = 1
+p1_redo_class = 1
+p2_redo_class = 1
 not_intro = ("n")
 print("Describe game")
 while start not in("y"):
@@ -13,10 +14,10 @@ while not_intro in ("n","N","No","no"):
 
 #Choosing class
     print ("Talk about what every stat does")
-    redo_class = 1
-    if redo_class in (1,"Y","y"):
-        redo_class = 0
-        print("Player one please allocate 25 levels or less in these 5 abiltes you can upgrade them later when you level up")
+    p1_redo_class = 1
+    if p1_redo_class in (1,"Y","y"):
+        p1_redo_class = 0
+        print("Player one please allocate 25 levels or less in these 5 stats you can upgrade them later when you level up")
         p1_hp = input("Health") 
         p1_mana = input("Mana")
         p1_arcane = input("Arcane")
@@ -25,12 +26,50 @@ while not_intro in ("n","N","No","no"):
         p1_level = p1_hp + p1_mana + p1_arcane + p1_strength + p1_dex
         if p1_level >= 26:
             print("Please keep your total number of points across your stats under 26")
-            redo_class = 1
+            p1_redo_class = 1
         if p1_level <= 25:
-            input("""Please choose your first of two starting weapons when you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another remeber you will get more weapons later in the game
-        1 Battle Axe
+
+#Player 1 choosing main weapon
+            p1_redo_weapons = ("Y")
+            if p1_redo_weapons in ("Y","y"):
+                p1_main = input("""Player one please enter the number of the weapon to choose your main weapon when you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another remeber you will get more weapons later in the game
+        1 Great Axe
         
-        2 """)
+        2 Wizard Wand + three spells of your choice
+        
+        3 Katanna 
+        
+        4 Bloody dagger + three blood spells of your choice
+        
+        5 Sword
+        
+        Back?
+        
+            What do you choose? """)
+            if p1_main in ("1","One","one","Great Axe","great axe","axe","Axe"):
+                p1_redo_weapons = input("""Great axe
+    Strength added to hit :
+        Strength / 4
+    
+    Dexerity added to hit:
+        none
+    
+    Random damage:
+        30 to 60
+                      
+    Strength added to damage:
+        Strength x 5
+    
+    Player one:
+    Your bonus to hit
+        {}
+                      
+    Average damage
+        {}
+    
+    Keep weapon? Y/N 
+      """.format(p1_strength / 4, p1_strength * 5 + 45))
+                
         else
              
     else:
@@ -76,11 +115,12 @@ while playing == 1:
 #Damage
     if p1_main in ("Great axe"):
         p1_base = 30
-        p1_main_bonus = p1_strength / 2
+        p1_main_bonus = p1_strength / 4
     p1_second_base_damage_main = p1_base + p1_strength * 5
 
     #C3
     if player_location == ("c3"):
+        print("Player one is on {} health out of {}, they have {} mana left and are level {}".format(p1_current_hp, p1_hp * 5))
         player_location = ("null")
         resting = input("Do you move or rest?")
         if resting in ("Rest","rest","Sleep","sleep","R","r","S","s"):
