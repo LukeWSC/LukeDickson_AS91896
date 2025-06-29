@@ -18,36 +18,86 @@ while not_intro in ("n","N","No","no"):
     if p1_redo_class in (1,"Y","y"):
         p1_redo_class = 0
         print("Player one please allocate 25 levels or less in these 5 stats you can upgrade them later when you level up")
-        p1_hp = input("Health") 
-        p1_mana = input("Mana")
-        p1_arcane = input("Arcane")
-        p1_strength = input("Strength")
-        p1_dex = input("Dexerity")
+        
+    #Health
+        p1_hp =  int(input("""Health: """))
+        p1_redo_class = 0
+        if p1_hp not in range (0,25):
+            print("""Please put in a usable input
+                  """)
+            p1_redo_class = 1
+            continue
+
+
+    #Mana
+        p1_mana = int(input("""Mana: """))
+        if p1_mana not in range (0,25):
+            print ("""Please put in a usable input
+                   """)
+            p1_redo_class = 1
+            continue
+
+            
+    #Arcane
+        p1_arcane = int(input("""Arcane: """))
+        if p1_arcane not in range (0,25):
+            print ("""Please put in a usable input
+                   """)
+            p1_redo_class = 1
+            continue
+
+
+    #Strength
+        p1_strength = int(input("""Strength: """))
+        if p1_strength not in range (0,25):
+            print ("""Please put in usable variables
+                   """)
+            p1_redo_class = 1
+            continue
+
+
+    #Dexerity
+        p1_dex = int(input("""Dexerity: """))
+        if p1_dex not in range (0,25):
+            print ("""Please put in usable variables
+                   """)
+            p1_redo_class = 1
+
+
+    #Calculate level and redo if to high
         p1_level = p1_hp + p1_mana + p1_arcane + p1_strength + p1_dex
         if p1_level >= 26:
-            print("Please keep your total number of points across your stats under 26")
+            print("""Please keep your total number of points across your stats under 26
+                  """)
             p1_redo_class = 1
         if p1_level <= 25:
 
+
 #Player 1 choosing main weapon
+            print(""" """)
             p1_redo_weapons = ("Y")
             if p1_redo_weapons in ("Y","y"):
-                p1_main = input("""Player one please enter the number of the weapon to choose your main weapon when you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another remeber you will get more weapons later in the game
-        1 Great Axe
+                p1_main = input("""Player one please enter the number of the weapon to choose your main weapon.
+When you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another.
+Remeber you will get more weapons and spells later in the game.
+    
+    1 Great Axe
         
-        2 Wizard Wand + three spells of your choice
+    2 Wizard Wand + three spells
         
-        3 Katanna 
+    3 Katanna 
         
-        4 Bloody dagger + three blood spells of your choice
+    4 Bloody dagger + three blood spells
         
-        5 Sword
+    5 Sword
+                                
+    6 Holy symbol + three holy spells
         
-        Back?
+    Back?
         
             What do you choose? """)
-            if p1_main in ("1","One","one","Great Axe","great axe","axe","Axe"):
-                p1_redo_weapons = input("""Great axe
+                if p1_main in ("1","One","one","Great Axe","great axe","axe","Axe"):
+                    p1_redo_weapons = input("""Great axe
     Strength added to hit :
         Strength / 4
     
@@ -69,18 +119,115 @@ while not_intro in ("n","N","No","no"):
     
     Keep weapon? Y/N 
       """.format(p1_strength / 4, p1_strength * 5 + 45))
-                
-        else
-             
-    else:
-                        print("please put in usable variables")
-                if redo_class not in ("y","Y"):
-                    player = 2
+    
+    #P1 incase invalid input
+                if p1_redo_weapons not in ("Y","y","N","n"):
+                    print("Please use only Y/N")
+                    p1_redo_weapons = ("y")
 
-#wrong input
-    else:
-        print("Please put in a usable variable")
-        redo_class = 1
+       #P1 keeping weapon going to P2
+                if p1_redo_weapons in ("Y","y"):
+                    p1_redo_weapons = ("y")
+                if p2_redo_class in (1,"Y","y"):
+                    p2_redo_class = 0
+                    print("Player two please allocate 25 levels or less in these 5 stats you can upgrade them later when you level up")
+
+        #Health
+                p2_hp =  int(input("""Health: """))
+                if p2_hp not in range (1,25):
+                    print("""Please put in a usable input
+                   """)
+                    p2_redo_class = 1
+                    continue
+
+        #Mana
+                p2_mana = int(input("""Mana: """))
+                if p2_mana not in range (1,25):
+                    print ("""Please put in a usable input
+                   """)
+                    p2_redo_class = 1
+                    continue
+
+        #Arcane
+                p2_arcane = int(input("""Arcane: """))
+                if p2_arcane not in range (1,25):
+                    print ("""Please put in a usable input
+                   """)
+                    p2_redo_class = 1
+                    continue
+
+        #Strength
+                p2_strength = int(input("""Strength: """))
+                if p2_strength not in range (1,25):
+                    print ("""Please put in usable variables
+                   """)
+                    p2_redo_class = 1
+                    continue
+        #Dexerity
+                p2_dex = int(input("""Dexerity: """))
+                if p2_dex not in range (1,25):
+                    print ("""Please put in usable variables
+                   """)
+                    p2_redo_class = 1
+                    continue
+
+        #Calculate level and redo if to high
+                p2_level = p2_hp + p2_mana + p2_arcane + p2_strength + p2_dex
+                if p2_level > 25:
+                    print("Please keep your total number of points across your stats under 26")
+                    p2_redo_class = 1
+                if p2_level <= 25:
+                    p2_redo_weapons = ("Y")
+            
+
+    #P2 choosing staring weapon
+                if p2_redo_weapons in ("Y","y"):
+                    p2_main = input("""Player two please enter the number of the weapon to choose your main weapon when you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another remeber you will get more weapons later in the game
+        1 Great Axe
+        
+        2 Wizard Wand + three wizard spells
+        
+        3 Katanna 
+        
+        4 Bloody dagger + three blood spells
+        
+        5 Sword
+                                
+        6 Holy symbol + three holy spells
+        
+        Back?
+        
+            What do you choose? """)
+    
+    #Great axe
+            if p2_main in ("1","One","one","Great Axe","great axe","axe","Axe"):
+                p2_redo_weapons = input("""Great axe
+    Strength added to hit :
+        Strength / 4
+    
+    Dexerity added to hit:
+        none
+    
+    Random damage:
+        30 to 60
+                      
+    Strength added to damage:
+        Strength x 5
+    
+    Player one:
+    Your bonus to hit
+        {}
+                      
+    Average damage
+        {}
+    
+    Keep weapon? Y/N 
+      """.format(p2_strength / 4, p2_strength * 5 + 45))
+    
+    #P2 incase invalid input
+            if p2_redo_weapons not in ("Y","y","N","n"):
+                print("Please use only Y/N")
+                p2_redo_weapons = ("y")
 
 #Map
 time = 16
@@ -120,8 +267,20 @@ while playing == 1:
 
     #C3
     if player_location == ("c3"):
+        
         print("Player one is on {} health out of {}, they have {} mana left and are level {}".format(p1_current_hp, p1_hp * 5))
         player_location = ("null")
+        print("""
+           FIRE         Time {}
+       A  B  C  D  E    
+   1        [{}]             E
+A  2     [{}][{}][{}]          A
+I  3  [{}][{}][U][{}][{}]       R
+R  4     [{}][{}][{}]     N    T
+   5        [{}]      W   E  H
+                       S
+           WATER
+""".format(time,c1,b2,c2,d2,a3,b3,c3,d3,e3,b4,c4,d4,c5))
         resting = input("Do you move or rest?")
         if resting in ("Rest","rest","Sleep","sleep","R","r","S","s"):
             p1_current_hp = p1_hp * 5
