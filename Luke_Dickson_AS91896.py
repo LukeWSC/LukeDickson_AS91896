@@ -15,7 +15,7 @@ while not_intro in ("n","N","No","no"):
 #Choosing class
     print ("Talk about what every stat does")
     p1_redo_class = 1
-    if p1_redo_class in (1,"Y","y"):
+    if p1_redo_class in (1,"Y","y","Back","back","b","B"):
         p1_redo_class = 0
         print("Player one please allocate 25 levels or less in these 5 stats you can upgrade them later when you level up")
         
@@ -75,8 +75,8 @@ while not_intro in ("n","N","No","no"):
 
 #Player 1 choosing main weapon
             print(""" """)
-            p1_redo_weapons = ("Y")
-            if p1_redo_weapons in ("Y","y"):
+            p1_redo_weapons = ("N")
+            if p1_redo_weapons in ("N","n","Back","back","b","B"):
                 p1_main = input("""Player one please enter the number of the weapon to choose your main weapon.
 When you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another.
 Remeber you will get more weapons and spells later in the game.
@@ -121,14 +121,12 @@ Remeber you will get more weapons and spells later in the game.
       """.format(round(p1_strength / 4), p1_strength * 5 + 45))
     
     #P1 incase invalid input
-                if p1_redo_weapons not in ("Y","y","N","n"):
+                if p1_redo_weapons not in ("Y","y","N","n","Back","back","b","B"):
                     print("Please use only Y/N")
-                    p1_redo_weapons = ("y")
+                    p1_redo_weapons = ("n")
 
        #P1 keeping weapon going to P2
-                if p1_redo_weapons in ("Y","y"):
-                    p1_redo_weapons = ("y")
-                if p2_redo_class in (1,"Y","y"):
+                if p2_redo_class in (1,"N","n"):
                     p2_redo_class = 0
                     print("Player two please allocate 25 levels or less in these 5 stats you can upgrade them later when you level up")
 
@@ -170,21 +168,20 @@ Remeber you will get more weapons and spells later in the game.
                    """)
                     p2_redo_class = 1
                     continue
-        
-        #To go back to p1 weapon
-                p1_redo_weapons = input ("")
 
         #Calculate level and redo if to high
                 p2_level = p2_hp + p2_mana + p2_arcane + p2_strength + p2_dex
                 if p2_level > 25:
                     print("Please keep your total number of points across your stats under 26")
                     p2_redo_class = 1
+                    print(""" """)
                 if p2_level <= 25:
                     p2_redo_weapons = ("N")
+                    print(""" """)
             
 
     #P2 choosing staring weapon
-                if p2_redo_weapons in ("N","n"):
+                if p2_redo_weapons in ("N","n","Back","back","b","B"):
                     p2_main = input("""Player two please enter the number of the weapon to choose your main weapon.
 When you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another.
 Remeber you will get more weapons and spells later in the game.
@@ -207,7 +204,7 @@ Remeber you will get more weapons and spells later in the game.
     
     #Great axe
                     if p2_main in ("1","One","one","Great Axe","great axe","axe","Axe"):
-                        p2_redo_weapons = input("""Great axe
+                        p2_redo_weapons = input("""Great axe    
     Strength added to hit :
         Strength / 4
     
@@ -229,8 +226,6 @@ Remeber you will get more weapons and spells later in the game.
     
     Keep weapon? Y/N 
       """.format(p2_strength / 4, p2_strength * 5 + 45))
-                    if p2_main in ("Back","back","b","B"):
-                        p2_redo_class
     
     #P2 incase invalid input
                     if p2_redo_weapons not in ("Y","y","N","n"):
