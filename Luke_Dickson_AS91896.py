@@ -4,7 +4,10 @@ import random
 start = ("n")
 player = 1
 p1_redo_class = 1
+p1_redo_class = 1
 p2_redo_class = 1
+p2_redo_weapons = 0
+p1_redo_weapons = 0
 not_intro = ("n")
 print("Describe game")
 while start not in("y"):
@@ -14,9 +17,11 @@ while not_intro in ("n","N","No","no"):
 
 #Choosing class
     print ("Talk about what every stat does")
-    p1_redo_class = 1
     if p1_redo_class in (1,"Y","y","Back","back","b","B"):
         p1_redo_class = 0
+        p2_redo_weapons = 0
+        p2_redo_class = 0
+        p1_redo_weapons = 0
         print("Player one please allocate 25 levels or less in these 5 stats you can upgrade them later when you level up")
         
     #Health
@@ -76,8 +81,13 @@ while not_intro in ("n","N","No","no"):
 #Player 1 choosing main weapon
             print(""" """)
             p1_redo_weapons = ("N")
-            if p1_redo_weapons in ("N","n","Back","back","b","B"):
-                p1_main = input("""Player one please enter the number of the weapon to choose your main weapon.
+            p1_redo_class = 0
+    if p1_redo_weapons in ("N","n","Back","back","b","B"):
+        p1_redo_class = 0
+        p2_redo_weapons = 0
+        p2_redo_class = 0
+        p1_redo_weapons = 0
+        p1_main = input("""Player one please enter the number of the weapon to choose your main weapon.
 When you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another.
 Remeber you will get more weapons and spells later in the game.
     
@@ -96,8 +106,8 @@ Remeber you will get more weapons and spells later in the game.
     Back?
         
             What do you choose? """)
-                if p1_main in ("1","One","one","Great Axe","great axe","axe","Axe"):
-                    p1_redo_weapons = input("""Great axe
+        if p1_main in ("1","One","one","Great Axe","great axe","axe","Axe"):
+            p1_redo_weapons = input("""Great axe
     Strength added to hit :
         Strength / 4 (rounded to nearest whole number)
     
@@ -120,69 +130,102 @@ Remeber you will get more weapons and spells later in the game.
     Keep weapon? Y/N 
       """.format(round(p1_strength / 4), p1_strength * 5 + 45))
     
+
+        if p1_main in ("3","Three","three","Katanna","katanna"):
+            p1_redo_weapons = input("""Katanna
+    Strength added to hit :
+        None
+    
+    Dexerity added to hit:
+        Strength / 3 (rounded to nearest whole number)
+    
+    Random damage:
+        15 to 70
+                      
+    Strength added to damage:
+        Strength x 5
+    
+    Player one:
+    Your bonus to hit
+        {}
+                      
+    Average damage
+        {}
+    
+    Keep weapon? Y/N 
+      """.format(round(p1_strength / 4), p1_strength * 5 + 45))
     #P1 incase invalid input
-                if p1_redo_weapons not in ("Y","y","N","n","Back","back","b","B"):
-                    print("Please use only Y/N")
-                    p1_redo_weapons = ("n")
+        if p1_redo_weapons not in ("Y","y","N","n","Back","back","b","B"):
+            print("Please use only Y/N")
+            p1_redo_weapons = ("n")
 
        #P1 keeping weapon going to P2
-                if p2_redo_class in (1,"N","n"):
-                    p2_redo_class = 0
-                    print("Player two please allocate 25 levels or less in these 5 stats you can upgrade them later when you level up")
+        if p1_redo_weapons in ("y","Y"):
+            p2_redo_class = 1
+    if p2_redo_class in (1,"n","N"):
+        p1_redo_class = 0
+        p2_redo_weapons = 0
+        p2_redo_class = 0
+        p1_redo_weapons = 0
+        print("Player two please allocate 25 levels or less in these 5 stats you can upgrade them later when you level up")
 
         #Health
-                p2_hp =  int(input("""Health: """))
-                if p2_hp not in range (0,25):
-                    print("""Please put in a usable input
-                   """)
-                    p2_redo_class = 1
-                    continue
+        p2_hp =  int(input("""Health: """))
+        if p2_hp not in range (0,25):
+            print("""Please put in a usable input
+                        """)
+            p2_redo_class = 1
+            continue
 
         #Mana
-                p2_mana = int(input("""Mana: """))
-                if p2_mana not in range (0,25):
-                    print ("""Please put in a usable input
+        p2_mana = int(input("""Mana: """))
+        if p2_mana not in range (0,25):
+            print ("""Please put in a usable input
                    """)
-                    p2_redo_class = 1
-                    continue
+            p2_redo_class = 1
+            continue
 
         #Arcane
-                p2_arcane = int(input("""Arcane: """))
-                if p2_arcane not in range (0,25):
-                    print ("""Please put in a usable input
+        p2_arcane = int(input("""Arcane: """))
+        if p2_arcane not in range (0,25):
+            print ("""Please put in a usable input
                    """)
-                    p2_redo_class = 1
-                    continue
+            p2_redo_class = 1
+            continue
 
         #Strength
-                p2_strength = int(input("""Strength: """))
-                if p2_strength not in range (0,25):
-                    print ("""Please put in usable variables
+        p2_strength = int(input("""Strength: """))
+        if p2_strength not in range (0,25):
+            print ("""Please put in usable variables
                    """)
-                    p2_redo_class = 1
-                    continue
+            p2_redo_class = 1
+            continue
         #Dexerity
-                p2_dex = int(input("""Dexerity: """))
-                if p2_dex not in range (0,25):
-                    print ("""Please put in usable variables
+        p2_dex = int(input("""Dexerity: """))
+        if p2_dex not in range (0,25):
+            print ("""Please put in usable variables
                    """)
-                    p2_redo_class = 1
-                    continue
+            p2_redo_class = 1
+            continue
 
         #Calculate level and redo if to high
-                p2_level = p2_hp + p2_mana + p2_arcane + p2_strength + p2_dex
-                if p2_level > 25:
-                    print("Please keep your total number of points across your stats under 26")
-                    p2_redo_class = 1
-                    print(""" """)
-                if p2_level <= 25:
-                    p2_redo_weapons = ("N")
-                    print(""" """)
+        p2_level = p2_hp + p2_mana + p2_arcane + p2_strength + p2_dex
+        if p2_level > 25:
+            print("Please keep your total number of points across your stats under 26")
+            p2_redo_class = 1
+            print(""" """)
+        if p2_level <= 25:
+            p2_redo_weapons = ("N")
+            print(""" """)
             
 
     #P2 choosing staring weapon
-                if p2_redo_weapons in ("N","n","Back","back","b","B"):
-                    p2_main = input("""Player two please enter the number of the weapon to choose your main weapon.
+    if p2_redo_weapons in ("N","n","Back","back","b","B"):
+        p1_redo_class = 0
+        p2_redo_weapons = 0
+        p2_redo_class = 0
+        p1_redo_weapons = 0
+        p2_main = input("""Player two please enter the number of the weapon to choose your main weapon.
 When you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another.
 Remeber you will get more weapons and spells later in the game.
                                     
@@ -203,8 +246,8 @@ Remeber you will get more weapons and spells later in the game.
             What do you choose? """)
     
     #Great axe
-                    if p2_main in ("1","One","one","Great Axe","great axe","axe","Axe"):
-                        p2_redo_weapons = input("""Great axe    
+        if p2_main in ("1","One","one","Great Axe","great axe","axe","Axe"):
+            p2_redo_weapons = input("""Great axe    
     Strength added to hit :
         Strength / 4
     
@@ -228,14 +271,14 @@ Remeber you will get more weapons and spells later in the game.
       """.format(p2_strength / 4, p2_strength * 5 + 45))
     
     #P2 incase invalid input
-                    if p2_redo_weapons not in ("Y","y","N","n"):
-                        print("Please use only Y/N")
-                        p2_redo_weapons = ("n")
+        if p2_redo_weapons not in ("Y","y","N","n"):
+            print("Please use only Y/N")
+            p2_redo_weapons = ("n")
 
-                    if p2_redo_weapons in ("Y","y"):
-                        p2_redo_weapons = input("Are you ready to begin?")
-                        if p2_redo_weapons in ("Y","y"):
-                            break
+        if p2_redo_weapons in ("Y","y"):
+            p2_redo_weapons = input("Are you ready to begin?")
+            if p2_redo_weapons in ("Y","y"):
+                break
         
 
 #Map
