@@ -119,6 +119,9 @@ Remeber you will get more weapons and spells later in the game.
                       
     Strength added to damage:
         Strength x 5
+                                    
+    Dexerity added to damage:
+        None
     
     Player one:
     Your bonus to hit
@@ -137,13 +140,16 @@ Remeber you will get more weapons and spells later in the game.
         None
     
     Dexerity added to hit:
-        Strength / 3 (rounded to nearest whole number)
+        Dexerity / 3 (rounded to nearest whole number)
     
     Random damage:
-        15 to 70
+        15 to 50
                       
     Strength added to damage:
-        Strength x 5
+        Strength x 2
+    
+    Dexerity added to damage:
+        Strength x 2
     
     Player one:
     Your bonus to hit
@@ -268,7 +274,7 @@ Remeber you will get more weapons and spells later in the game.
         {}
     
     Keep weapon? Y/N 
-      """.format(p2_strength / 4, p2_strength * 5 + 45))
+      """.format(round(p1_strength / 4), p1_strength * 5 + 45))
     
     #P2 incase invalid input
         if p2_redo_weapons not in ("Y","y","N","n"):
@@ -308,19 +314,37 @@ R  4     [{}][{}][{}]     N    T
            WATER
 """.format(time,c1,b2,c2,d2,a3,b3,c3,d3,e3,b4,c4,d4,c5))
 player_location = ("c3")
+
+#P1 stats
+p1_max_health = p1_hp * 5 + 30
+p1_current_hp = p1_max_health
+p1_max_mana = p1_mana * 5
+p1_current_mana = p1_max_mana
+
+#P2 stats
+p2_max_health = p2_hp * 5 + 30
+p2_current_hp = p2_max_health
+p2_max_mana = p2_mana * 5
+p2_current_mana = p2_max_mana
+
+
 playing = 1
 while playing == 1:
 
 #Damage
     if p1_main in ("Great axe"):
-        p1_base = 30
-        p1_main_bonus = p1_strength / 4
-    p1_second_base_damage_main = p1_base + p1_strength * 5
+        p1_to_hit = round(p1_strength / 4)
+        p1_base_damage = p1_strength * 5 
+
+    if p2_main in ("Great axe"):
+        p2_to_hit = round(p2_strength / 4)
+        p2_base_damage = p2_strength * 5 
+    
 
     #C3
     if player_location == ("c3"):
-        
-        print("Player one is on {} health out of {}, they have {} mana left and are level {}".format(p1_current_hp, p1_hp * 5))
+        print("Player one is on {} health out of {}, they have {} mana left and are level {}".format(p1_current_hp, p1_max_health,p1_current_mana,p1_max_mana,p1_level))
+        print("Player two is on {} health out of {}, they have {} mana left and are level {}".format(p2_current_hp, p2_max_health,p2_current_mana,p2_max_mana,p1_level))
         player_location = ("null")
         print("""
            FIRE         Time {}
@@ -335,9 +359,10 @@ R  4     [{}][{}][{}]     N    T
 """.format(time,c1,b2,c2,d2,a3,b3,c3,d3,e3,b4,c4,d4,c5))
         resting = input("Do you move or rest?")
         if resting in ("Rest","rest","Sleep","sleep","R","r","S","s"):
-            p1_current_hp = p1_hp * 5
-            p1_energy = p1_dex * 5 + 30
-            p1_current_mana = p1_mana * 5
+            p1_current_hp = p1_max_health
+            p1_current_mana = p1_max_mana
+            p2_current_hp = p2_max_health
+            p2_current_mana = p2_max_mana
             time - 2
             player_location = ("c3")
         if resting in ("move","Move","M","m"):
@@ -361,25 +386,49 @@ R  4     [{}][{}][{}]     N    T
     #C2
     if player_location == ("c2"):
         time - 1
-        basic_fire_bosses = ["Fire Lizard","Flame Golem"]
+        basic_fire_bosses = ["Fire Lizard"]
         enemy = random.choice(basic_fire_bosses)
         if enemy in ("Fire Lizard"):
             enemy_hp = 200
             enemy_ac = 14
             enemy_energy = 50
             enemy_attacks = ["Spit flame", "Consume","Tail"]
+            print ("A Flame Lizard appears!")
         while enemy in ("Fire Lizard"):
-            print("A Flame Lizard appears hp: {}  ac: {}  energy = {}".format(enemy_hp,enemy_ac,enemy_energy))
+            print("Flame Lizard hp: {}  ac: {}  energy = {}".format(enemy_hp,enemy_ac,enemy_energy))
         
         #Player one action
             p1_action =input("""Player 1 what do you do? 
-Attack?    Run?    Cast?    Inventory?    Skip?
+1 Attack?    2 Run?    3 Cast?    4 Skip?
 """)
-            if p1_action in ("Attack","Fight","attack","fight","f","F","A","a"):
-                p1_to_hit = (random.randrange(1, 20))
-                p1_to_hit + p1_main_bonus
+            if p1_action in ("1","one","One","Attack","Fight","attack","fight","f","F","A","a"):
+                p1_to_hit += (random.randrange(1, 20))
                 if p1_to_hit >= 14:
                     print("Hit!")
-                    enemy_hp -= p1_base + random.randrange(1, 60)
+                    if p1_main in ("Great axe"):
+                        p1_display_damage = p1_base_damage + (random.randrange(30, 60))
+                        enemy_hp -= p1_display_damage
+                        print("Player one you did {} damage so the boss is now on {}".format(p1_display_damage,enemy_hp))
                 if p1_to_hit <= 14:
                     print("Miss")
+
+        #Player two action
+            p2_action =input("""Player 2 what do you do? 
+1 Attack?    2 Run?    3 Cast?    4 Skip?
+""")
+            if p2_action in ("1","one","One","Attack","Fight","attack","fight","f","F","A","a"):
+                p2_to_hit += (random.randrange(1, 20))
+                if p2_to_hit >= 14:
+                    print("Hit!")
+                    if p2_main in ("Great axe"):
+                        p2_display_damage = p2_base_damage + (random.randrange(30, 60))
+                        enemy_hp -= p2_display_damage
+                        print("Player one you did {} damage so the boss is now on {}".format(p2_display_damage,enemy_hp))
+                if p2_to_hit <= 14:
+                    print("Miss")
+
+        #Enemies turn
+            random.choice(enemy_attacks)
+
+
+    #Final boss
