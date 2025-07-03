@@ -108,11 +108,8 @@ Remeber you will get more weapons and spells later in the game.
             What do you choose? """)
         if p1_main in ("1","One","one","Great Axe","great axe","axe","Axe"):
             p1_redo_weapons = input("""Great axe
-    Strength added to hit :
-        Strength / 4 (rounded to nearest whole number)
-    
-    Dexerity added to hit:
-        none
+    Dexerity added to hit
+        Dexerity / 4 + 1
     
     Random damage:
         30 to 60
@@ -131,13 +128,11 @@ Remeber you will get more weapons and spells later in the game.
         {}
     
     Keep weapon? Y/N 
-      """.format(round(p1_strength / 4), p1_strength * 5 + 45))
+      """.format(round(p1_strength / 4) + 1, p1_strength * 5 + 45))
     
 
         if p1_main in ("3","Three","three","Katanna","katanna"):
             p1_redo_weapons = input("""Katanna
-    Strength added to hit :
-        None
     
     Dexerity added to hit:
         Dexerity / 3 (rounded to nearest whole number)
@@ -149,7 +144,7 @@ Remeber you will get more weapons and spells later in the game.
         Strength x 2
     
     Dexerity added to damage:
-        Strength x 2
+        Dexerity x 2
     
     Player one:
     Your bonus to hit
@@ -159,7 +154,35 @@ Remeber you will get more weapons and spells later in the game.
         {}
     
     Keep weapon? Y/N 
-      """.format(round(p1_strength / 4), p1_strength * 5 + 45))
+      """.format(round(p1_dex / 3), p1_dex * 2 + 30 + p1_strength * 2))
+            
+    
+        if p1_main in ("5","Five","five","Sword","sword"):
+            p1_redo_weapons = input("""Katanna
+    Strength added to hit :
+        None
+    
+    Dexerity added to hit:
+        Dexerity / 3 (rounded to nearest whole number)
+    
+    Random damage:
+        25 to 55
+                      
+    Strength added to damage:
+        Strength x 3
+    
+    Dexerity added to damage:
+        Dexerity x 3
+    
+    Player one:
+    Your bonus to hit
+        {}
+                      
+    Average damage
+        {}
+    
+    Keep weapon? Y/N 
+      """.format(round(p1_dex / 3), p1_dex * 3 + 40 + p1_strength * 3))
     #P1 incase invalid input
         if p1_redo_weapons not in ("Y","y","N","n","Back","back","b","B"):
             print("Please use only Y/N")
@@ -363,6 +386,7 @@ R  4     [{}][{}][{}]     N    T
             p1_current_mana = p1_max_mana
             p2_current_hp = p2_max_health
             p2_current_mana = p2_max_mana
+            p1_ac = round(p1_dex / 2.5)
             time - 2
             player_location = ("c3")
         if resting in ("move","Move","M","m"):
@@ -392,10 +416,10 @@ R  4     [{}][{}][{}]     N    T
             enemy_hp = 200
             enemy_ac = 14
             enemy_energy = 50
-            enemy_attacks = ["Spit flame", "Consume","Tail"]
-            print ("A Flame Lizard appears!")
-        while enemy in ("Fire Lizard"):
-            print("Flame Lizard hp: {}  ac: {}  energy = {}".format(enemy_hp,enemy_ac,enemy_energy))
+            enemy_attacks = ["Claw","Consume","Tail","Tail"]
+            print ("A Giant Lizard appears!")
+        while enemy in ("Giant Lizard"):
+            print("Giant Lizard hp: {}  ac: {}  energy = {}".format(enemy_hp,enemy_ac,enemy_energy))
         
         #Player one action
             p1_action =input("""Player 1 what do you do? 
@@ -428,7 +452,35 @@ R  4     [{}][{}][{}]     N    T
                     print("Miss")
 
         #Enemies turn
-            random.choice(enemy_attacks)
+            if ready_to_eat == 1 and enemy_energy >= 75: 
+                enemy_target = p1_display_damage - p2_display_damage
+                enemy_energy -= 60
+                if enemy_target >= 1:
+                    enemy_to_hit += (random.randrange(1, 20)) + 6
+                    if enemy_to_hit >= p1_ac:
+                        print("Hit!")
+                if enemy_target <= 0:
+                    enemy_to_hit += (random.randrange(1, 20)) + 6
+                    if enemy_to_hit >= p1_ac:
+                        print("The Lizard leaps forward mouth wide open devourering player one!")
+                    
+                
+
+            enemy_action = random.choice(enemy_attacks)
+            if enemy_action in ("Tail") and enemy_energy >= 35:
+                
+                
+            if enemy_action in ("Consume") and enemy_energy >= 65:
+                print("You see the Lizard open it's jaws wide as if it's about to pounce")
+                ready_to_eat = 1
+
+            if enemy_action in ("Claw","Consume","Tail") and :
+                
+
+            else:
+                print("The Lizard is to exhausted to do anything")
+
+
 
 
     #Final boss
