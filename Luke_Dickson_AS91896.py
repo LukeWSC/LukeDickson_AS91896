@@ -172,7 +172,7 @@ Remeber you will get more weapons and spells later in the game.
         Strength x 3
     
     Dexerity added to damage:
-        Dexerity x 3
+        None
     
     Player one:
     Your bonus to hit
@@ -182,9 +182,15 @@ Remeber you will get more weapons and spells later in the game.
         {}
     
     Keep weapon? Y/N 
-      """.format(round(p1_dex / 3), p1_dex * 3 + 40 + p1_strength * 3))
+      """.format(round(p1_dex / 3), 40 + p1_strength * 3))
+            
+    #P1 back to score
+        if p1_main in ("Back","back","b","B"):
+            p1_redo_class = 1
+            p1_redo_weapons = 0
+
     #P1 incase invalid input
-        if p1_redo_weapons not in ("Y","y","N","n","Back","back","b","B"):
+        if p1_redo_weapons not in ("Y","y","N","n","Back","back","b","B","0"):
             print("Please use only Y/N")
             p1_redo_weapons = ("n")
 
@@ -196,7 +202,7 @@ Remeber you will get more weapons and spells later in the game.
         p2_redo_weapons = 0
         p2_redo_class = 0
         p1_redo_weapons = 0
-        print("Player two please allocate 25 levels or less in these 5 stats you can upgrade them later when you level up")
+        print("Player two please allocate 25 levels or less in these 5 stats you can upgrade them later when you level up also you can type back to go back to player one's weapon")
 
         #Health
         p2_hp =  int(input("""Health: """))
@@ -298,9 +304,12 @@ Remeber you will get more weapons and spells later in the game.
     
     Keep weapon? Y/N 
       """.format(round(p1_strength / 4), p1_strength * 5 + 45))
-    
+            
+        if p2_main in ("Back","back","b","B"):
+            p2_redo_class = 1
+            p2_redo_weapons = 0
     #P2 incase invalid input
-        if p2_redo_weapons not in ("Y","y","N","n"):
+        if p2_redo_weapons not in ("Y","y","N","n","0"):
             print("Please use only Y/N")
             p2_redo_weapons = ("n")
 
@@ -325,17 +334,6 @@ b4 = 1
 c4 = 1
 d4 = 1
 c5 = ("B")
-print("""
-           FIRE         Time {}
-       A  B  C  D  E    
-   1        [{}]             E
-A  2     [{}][{}][{}]          A
-I  3  [{}][{}][U][{}][{}]       R
-R  4     [{}][{}][{}]     N    T
-   5        [{}]      W   E  H
-                       S
-           WATER
-""".format(time,c1,b2,c2,d2,a3,b3,c3,d3,e3,b4,c4,d4,c5))
 player_location = ("c3")
 
 #P1 stats
@@ -343,22 +341,25 @@ p1_max_health = p1_hp * 5 + 30
 p1_current_hp = p1_max_health
 p1_max_mana = p1_mana * 5
 p1_current_mana = p1_max_mana
+p1_ac = round(p1_dex / 2.5)
 
 #P2 stats
 p2_max_health = p2_hp * 5 + 30
 p2_current_hp = p2_max_health
 p2_max_mana = p2_mana * 5
 p2_current_mana = p2_max_mana
+p2_ac = round(p1_dex / 2.5)
 
 
 playing = 1
 while playing == 1:
 
-#Damage
+#Damage player one
     if p1_main in ("Great axe"):
         p1_to_hit = round(p1_strength / 4)
         p1_base_damage = p1_strength * 5 
 
+#Damage player two
     if p2_main in ("Great axe"):
         p2_to_hit = round(p2_strength / 4)
         p2_base_damage = p2_strength * 5 
@@ -387,12 +388,14 @@ R  4     [{}][{}][{}]     N    T
             p2_current_hp = p2_max_health
             p2_current_mana = p2_max_mana
             p1_ac = round(p1_dex / 2.5)
-            time - 2
+            p2_ac = round(p1_dex / 2.5)
+            time -= 2
             player_location = ("c3")
         if resting in ("move","Move","M","m"):
             direction = input("Where do you go? N/E/S/W ")
             if direction in ("N","n","North","north"):
                 player_location = ("c2")
+                continue
             if direction in ("S","s","South","south"):
                 player_location = ("c4")
             if direction in ("E","e","East","east"):
@@ -415,10 +418,10 @@ R  4     [{}][{}][{}]     N    T
         if enemy in ("Fire Lizard"):
             enemy_hp = 200
             enemy_ac = 14
-            enemy_energy = 50
+            enemy_energy = 100
             enemy_attacks = ["Claw","Consume","Tail","Tail"]
             print ("A Giant Lizard appears!")
-        while enemy in ("Giant Lizard"):
+        while enemy_hp > 0:
             print("Giant Lizard hp: {}  ac: {}  energy = {}".format(enemy_hp,enemy_ac,enemy_energy))
         
         #Player one action
@@ -453,34 +456,71 @@ R  4     [{}][{}][{}]     N    T
 
         #Enemies turn
             if ready_to_eat == 1 and enemy_energy >= 75: 
-                enemy_target = p1_display_damage - p2_display_damage
                 enemy_energy -= 60
-                if enemy_target >= 1:
+                if p1_display_damage >= p2_display_damage:
                     enemy_to_hit += (random.randrange(1, 20)) + 6
                     if enemy_to_hit >= p1_ac:
                         print("Hit!")
-                if enemy_target <= 0:
+                if p1_display_damage <= p2_display_damage:
                     enemy_to_hit += (random.randrange(1, 20)) + 6
-                    if enemy_to_hit >= p1_ac:
+                    if enemy_to_hit >= p2_ac:
                         print("The Lizard leaps forward mouth wide open devourering player one!")
                     
                 
 
-            enemy_action = random.choice(enemy_attacks)
+            if ready_to_eat == 0:
+                enemy_action = random.choice(enemy_attacks)
+            if ready_to_eat == 0:
+                enemy_action = ("null")
             if enemy_action in ("Tail") and enemy_energy >= 35:
-                
-                
+                enemy_to_hit = (random.randrange(1, 20))
+                if enemy_to_hit >= p1_ac:
+                    enemy_damage = (random.randrange(15, 30))
+                    p1_current_hp -= enemy_damage
+                    print("The lizard swipes it's tail hiting player one for {} leaving player one on {} health".format(enemy_damage,p1_current_hp))
+                if enemy_to_hit < p1_ac:
+                    print("The lizard swipes it's tail missing player one")
+                enemy_to_hit = (random.randrange(1, 20))
+                if enemy_to_hit >= p2_ac:
+                    enemy_damage = (random.randrange(15, 30))
+                    p2_current_hp -= enemy_damage
+                    print("The lizards tail hits player two for {} leaving player two on {} health".format(enemy_damage,p2_current_hp))
+                if enemy_to_hit < p2_ac:
+                    print("The lizard tail misses player two")
+            
             if enemy_action in ("Consume") and enemy_energy >= 65:
                 print("You see the Lizard open it's jaws wide as if it's about to pounce")
                 ready_to_eat = 1
+                continue
 
-            if enemy_action in ("Claw","Consume","Tail") and :
-                
+            if enemy_action in ("Claw","Consume","Tail") and enemy_energy >= 20:
+                enemy_energy -= 15
+                if p1_display_damage >= p2_display_damage:
+                    enemy_to_hit += (random.randrange(1, 20)) + 6
+                    if enemy_to_hit >= p1_ac:
+                        print("The lizard goes in for a swipe with it's claws at player one and hits!")
+                        enemy_damage = (random.randrange(15, 30))
+                        p1_current_hp -= enemy_damage
+                        print("Player one took {} damage and is on {} health".format(enemy_damage, p1_current_hp))
+                    if enemy_to_hit < p1_ac:
+                        print("The lizard goes in for a swipe with it's claws at player one but misses.")
+
+                if p1_display_damage < p2_display_damage:
+                    enemy_to_hit += (random.randrange(1, 20)) + 6
+                    if enemy_to_hit >= p2_ac:
+                        print("The lizard goes in for a swipe with it's claws at player two and hits!")
+                        enemy_damage = (random.randrange(15, 30))
+                        p2_current_hp -= enemy_damage
+                        print("Player two took {} damage and is on {} health".format(enemy_damage, p2_current_hp))
+                    if enemy_to_hit < p2_ac:
+                        print("The lizard goes in for a swipe with it's claws at player two but misses.")
 
             else:
                 print("The Lizard is to exhausted to do anything")
+                enemy_energy + 30
 
-
+        #Restarting combat
+            enemy_energy + 25
 
 
     #Final boss
