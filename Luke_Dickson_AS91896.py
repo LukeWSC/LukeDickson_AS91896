@@ -383,7 +383,7 @@ while playing == 1:
         p1_base_damage = p2_dex * 2 + p2_strength * 2
 
     if p1_main in ("3","Three","three","Sword","sword"):
-        p2_to_hit = round(p1_dex / 3)
+        p1_to_hit = round(p1_dex / 3)
         p1_base_damage = p1_strength * 3
 
 #Damage player two
@@ -432,10 +432,13 @@ while playing == 1:
                 continue
             if direction in ("S","s","South","south"):
                 player_location = ("c2")
+                continue
             if direction in ("E","e","East","east"):
                 player_location = ("c2")
+                continue
             if direction in ("W","w","West","west"):
                 player_location = ("c2")
+                continue
             else:
                 print("Please put in a usable variable.")
                 player_location = ("c3")
@@ -477,11 +480,23 @@ while playing == 1:
                             p1_display_damage = p1_base_damage + (random.randrange(30, 60))
                             enemy_hp -= p1_display_damage
                             print("Player one you did {} damage so the boss is now on {}".format(p1_display_damage,enemy_hp))
+
+                        if p1_main in ("2","Two","two","Katanna","katanna"):
+                            p1_display_damage = p1_base_damage + (random.randrange(15, 50))
+                            enemy_hp -= p1_display_damage
+                            print("Player one you did {} damage so the boss is now on {}".format(p1_display_damage,enemy_hp))
+
+                        if p1_main in ("3","Three","three","Sword","sword"):
+                            p1_display_damage = p1_base_damage + (random.randrange(20, 55))
+                            enemy_hp -= p1_display_damage
+                            print("Player one you did {} damage so the boss is now on {}".format(p1_display_damage,enemy_hp))
+
                     if p1_to_hit <= 14:
                         print("Miss")
                 
                 if p1_action in ("Run","run","2","Two","two","R","r"):
                     player_location = ("c3")
+                    enemy_hp = 0
                     continue
             
             if p1_current_hp <= 0:
@@ -502,11 +517,23 @@ while playing == 1:
                         if p2_main in ("1","One","one","Great Axe","great axe","axe","Axe"):
                             p2_display_damage = p2_base_damage + (random.randrange(30, 60))
                             enemy_hp -= p2_display_damage
-                            print("Player one you did {} damage so the boss is now on {}".format(p2_display_damage,enemy_hp))
+                            print("Player two you did {} damage so the boss is now on {}".format(p2_display_damage,enemy_hp))
                             print(" ")
+
+                        if p2_main in ("2","Two","two","Katanna","katanna"):
+                            p2_display_damage = p2_base_damage + (random.randrange(15, 50))
+                            enemy_hp -= p2_display_damage
+                            print("Player two you did {} damage so the boss is now on {}".format(p2_display_damage,enemy_hp))
+                            print(" ")
+
+                        if p2_main in ("3","Three","three","Sword","sword"):
+                            p2_display_damage = p2_base_damage + (random.randrange(20, 55))
+                            enemy_hp -= p2_display_damage
+                            print("Player one you did {} damage so the boss is now on {}".format(p2_display_damage,enemy_hp))
 
                         if p1_action in ("Run","run","2","Two","two","R","r"):
                             player_location = ("c3")
+                            enemy_hp = 0
                             continue
 
                     if p2_to_hit <= 14:
@@ -517,6 +544,24 @@ while playing == 1:
                 print("Player one is knocked out!")
                 print(" ")
                 players_down += 1
+
+            if enemy_hp <= 0:
+                print("You defeated the giant lizard amazing job!")
+                print("Thank you for playing more coming soon!")
+                enemy_hp = 0
+                player_location = ("c3")
+                break
+            
+            if players_down >= 2:
+                print("Oh no! You were defeated by the giant lizard better luck next time!")
+                player_location = ("c3")
+                enemy_hp = 0
+                players_down = 0
+                p1_current_hp = 1
+                p2_current_hp = 1
+                continue
+                
+                
 
         #Enemies turn
             if enemy_hp > 0:
@@ -592,17 +637,6 @@ while playing == 1:
             else:
                 print("The Lizard is to exhausted to do anything")
                 enemy_energy + 30
-
-            
-        if enemy_hp <= 0:
-            print("You defeated the giant lizard amazing job!")
-            print("Thank you for playing more coming soon!")
-            break
-        
-        if players_down >= 2:
-            print("Oh no! You were defeated by the giant lizard better luck next time!")
-            print("Thank you for playing more coming soon!")
-            break
 
 
     #Final boss
