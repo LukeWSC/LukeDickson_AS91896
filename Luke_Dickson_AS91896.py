@@ -26,9 +26,9 @@ while not_intro in ("n","N","No","no"):
         p2_redo_class = 0
         p1_redo_weapons = 0
         print("---PLAYER ONE---")
-        print ("""Health is the ammount of damage your character can take before being knonked out.
+        print ("""Health is the ammount of damage your character can take before being knocked out.
            
-Stregth is how good you are with strength weapons and is mainly based on damage.
+Strength is how good you are with strength weapons and is mainly based on damage.
            
 Dexerity is how good you are with dexerity weapons and how likely you are to get hit by an enemy and it mainly changes how likely you are to hit.
                """)
@@ -189,9 +189,9 @@ Remeber you will get more weapons and spells later in the game.
         p2_redo_class = 0
         p1_redo_weapons = 0
         print("---PLAYER TWO---")
-        print ("""Health is the ammount of damage your character can take before being knonked out.
+        print ("""Health is the ammount of damage your character can take before being knocked out.
            
-Stregth is how good you are with strength weapons and is mainly based on damage.
+Strength is how good you are with strength weapons and is mainly based on damage.
            
 Dexerity is how good you are with dexerity weapons and how likely you are to get hit by an enemy and it mainly changes how likely you are to hit.
                """)
@@ -199,11 +199,11 @@ Dexerity is how good you are with dexerity weapons and how likely you are to get
         print("Player two please allocate 15 levels or less in these 3 stats")
 
         #Back
-        go_back = input("Back? Y/N ")
-        if go_back in ("Y","y"):
+        go_back = input("Continue? Y/N ")
+        if go_back in ("n","N"):
             print(" ")
             print("---PLAYER ONE---")
-            p1_redo_weapons = ("N")
+            p1_redo_weapons = ("n")
             go_back = 0
             continue
         if go_back not in ("Y","y","N","n"):
@@ -423,7 +423,7 @@ while playing == 1:
         print("Player two is on {} health out of {} and are level {}".format(p2_current_hp, p2_max_health,p1_level))
         player_location = ("null")
         print("""
-                        Time {}
+                        
        A  B  C  D  E    
    1        [{}]             
    2     [{}][{}][{}]          
@@ -431,8 +431,8 @@ while playing == 1:
    4     [{}][{}][{}]     N    
    5        [{}]      W   E  
                        S
-           WATER
-""".format(time,c1,b2,c2,d2,a3,b3,c3,d3,e3,b4,c4,d4,c5))
+           
+""".format(c1,b2,c2,d2,a3,b3,c3,d3,e3,b4,c4,d4,c5))
         resting = input("Do you move or rest? ")
         if resting in ("Rest","rest","Sleep","sleep","R","r","S","s"):
             players_down = 0
