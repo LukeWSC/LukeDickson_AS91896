@@ -20,13 +20,19 @@ while not_intro in ("n","N","No","no"):
 
 
 #Choosing class
-    print ("Talk about what every stat does")
     if p1_redo_class in (1,"Y","y","Back","back","b","B"):
         p1_redo_class = 0
         p2_redo_weapons = 0
         p2_redo_class = 0
         p1_redo_weapons = 0
         print("---PLAYER ONE---")
+        print ("""Health is the ammount of damage your character can take before being knonked out.
+           
+Stregth is how good you are with strength weapons and is mainly based on damage.
+           
+Dexerity is how good you are with dexerity weapons and how likely you are to get hit by an enemy and it mainly changes how likely you are to hit.
+               """)
+
         print("Player one please allocate 15 levels or less in these 3 stats")
         
     #Health
@@ -183,6 +189,13 @@ Remeber you will get more weapons and spells later in the game.
         p2_redo_class = 0
         p1_redo_weapons = 0
         print("---PLAYER TWO---")
+        print ("""Health is the ammount of damage your character can take before being knonked out.
+           
+Stregth is how good you are with strength weapons and is mainly based on damage.
+           
+Dexerity is how good you are with dexerity weapons and how likely you are to get hit by an enemy and it mainly changes how likely you are to hit.
+               """)
+
         print("Player two please allocate 15 levels or less in these 3 stats")
 
         #Back
