@@ -57,3 +57,7 @@ if boss_redo in ("y","Y","Yes","yes"):
     if boss_redo not in ("y","Y","Yes","yes"):
         print ("""-------------
                """)
+        p1_redo_weapons = 1
+
+        #Back?
+        p1_redo_weapons = input("Enter \"back\" to go back to player's weapon.")

@@ -9,7 +9,11 @@ p2_redo_class = 1
 p2_redo_weapons = 0
 p1_redo_weapons = 0
 not_intro = ("n")
-print("Welcome to my game ")
+print("""Welcome to my game. This game is a text based fighting game which you choose you starting skills and weapon.
+This game currently only has one boss and two tiles but there might be more weapons, more tiles, more bosses, more skills and a magic system coming soon!
+This game needs and saves no personal data so you don't have to worry what so ever about your safety.
+This game is also unfinshed but more will probabley be coming soon!
+      """)
 while start not in("y"):
     start = input("Are you ready Y/N ")
 while not_intro in ("n","N","No","no"):
@@ -397,7 +401,7 @@ while playing == 1:
 
     if p2_main in ("3","Three","three","Sword","sword"):
         p2_to_hit = round(p1_dex / 3)
-        p1_base_damage = p1_strength * 3
+        p2_base_damage = p1_strength * 3
     
 
     #C3
@@ -470,7 +474,7 @@ while playing == 1:
                 print(" ")
                 print("---PLAYER ONE---")
                 p1_action =input("""Player 1 what do you do? 
-1 Attack?    2 Run?    3 Cast?
+1 Attack?    2 Run?
 """)
                 if p1_action in ("1","one","One","Attack","Fight","attack","fight","f","F","A","a"):
                     p1_to_hit += (random.randrange(1, 20))
