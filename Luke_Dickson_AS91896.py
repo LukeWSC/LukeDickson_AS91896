@@ -654,6 +654,3 @@ while playing == 1:
             else:
                 print("The Lizard is to exhausted to do anything")
                 enemy_energy + 30
-
-
-    #Final boss
