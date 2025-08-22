@@ -3,84 +3,68 @@ boss = 1
 import random
 start = ("n")
 player = 1
-p1_redo_class = 1
-p1_redo_class = 1
-p2_redo_class = 1
-p2_redo_weapons = 0
-p1_redo_weapons = 0
 not_intro = ("n")
-print("""Welcome to my game. This game is a text based fighting game which you choose you starting skills and weapon.
-This game currently only has one boss and two tiles but there might be more weapons, more tiles, more bosses, more skills and a magic system coming soon!
-This game needs and saves no personal data so you don't have to worry what so ever about your safety.
-This game is also unfinshed but more will probabley be coming soon!
-      """)
-while start not in("y"):
-    start = input("Are you ready Y/N ")
-while not_intro in ("n","N","No","no"):
-
-
 #Choosing class
-    if p1_redo_class in (1,"Y","y","Back","back","b","B"):
-        p1_redo_class = 0
-        p2_redo_weapons = 0
-        p2_redo_class = 0
-        p1_redo_weapons = 0
-        print("---PLAYER ONE---")
-        print ("""Health is the ammount of damage your character can take before being knocked out.
+def p1_func_class():
+    print("---PLAYER ONE---")
+    print ("""Health is the ammount of damage your character can take before being knocked out.
            
 Strength is how good you are with strength weapons and is mainly based on damage.
            
 Dexerity is how good you are with dexerity weapons and how likely you are to get hit by an enemy and it mainly changes how likely you are to hit.
                """)
 
-        print("Player one please allocate 15 levels or less in these 3 stats")
+    print("Player one please allocate 15 levels or less in these 3 stats")
         
     #Health
-        p1_hp =  int(input("""Health: """))
-        p1_redo_class = 0
-        if p1_hp not in range (0,16):
-            print("""Please put in a usable input
-                  """)
-            p1_redo_class = 1
-            continue
+    p1_hp =  int(input("""Health: """))
+    if p1_dex not in range (0,16):
+            print ("""Please put numbers between 0-15
+                   """)
+            p1_func_class()
+    else:
+            print ("""Please put in usable variables
+                   """)
+            p1_func_class()
 
 
     #Strength
-        p1_strength = int(input("""Strength: """))
-        if p1_strength not in range (0,16):
+    p1_strength = int(input("""Strength: """))
+    if p1_dex not in range (0,16):
+            print ("""Please put numbers between 0-15
+                   """)
+            p1_func_class()
+    else:
             print ("""Please put in usable variables
                    """)
-            p1_redo_class = 1
-            continue
+            p1_func_class()
 
 
     #Dexerity
-        p1_dex = int(input("""Dexerity: """))
-        if p1_dex not in range (0,16):
+    p1_dex = int(input("""Dexerity: """))
+    if p1_dex not in range (0,16):
+            print ("""Please put numbers between 0-15
+                   """)
+            p1_func_class()
+    else:
             print ("""Please put in usable variables
                    """)
-            p1_redo_class = 1
+            p1_func_class()
 
 
     #Calculate level and redo if to high
-        p1_level = p1_hp + p1_strength + p1_dex
-        if p1_level >= 16:
-            print("""Please keep your total number of points across your stats under 26
+    p1_level = p1_hp + p1_strength + p1_dex
+    if p1_level >= 16:
+        print("""Please keep your total number of points across your stats under 26
                   """)
-            p1_redo_class = 1
         if p1_level <= 15:
 
 
 #Player 1 choosing main weapon
             print(""" """)
-            p1_redo_weapons = ("N")
-            p1_redo_class = 0
-    if p1_redo_weapons in ("N","n","Back","back","b","B"):
-        p1_redo_class = 0
-        p2_redo_weapons = 0
-        p2_redo_class = 0
-        p1_redo_weapons = 0
-        p1_main = input("""Player one please enter the number of the weapon to choose your main weapon.
+            p1_func_weapon()
+def p1_func_weapon():
+    p1_main = input("""Player one please enter the number of the weapon to choose your main weapon.
 When you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another.
 Remeber you will get more weapons and spells later in the game.
     
@@ -93,8 +77,8 @@ Remeber you will get more weapons and spells later in the game.
     Back?
         
             What do you choose? """)
-        if p1_main in ("1","One","one","Great axe","great axe","axe","Axe"):
-            p1_redo_weapons = input("""Great axe
+    if p1_main in ("1","One","one","Great axe","great axe","axe","Axe"):
+        p1_redo_weapons = input("""Great axe
     Dexerity added to hit
         Dexerity / 4 + 1
     
@@ -117,8 +101,8 @@ Remeber you will get more weapons and spells later in the game.
     Keep weapon? Y/N 
       """.format(round(p1_strength / 4) + 1, p1_strength * 5 + 45))
 
-        if p1_main in ("2","Two","two","Katanna","katanna"):
-            p1_redo_weapons = input("""Katanna
+    if p1_main in ("2","Two","two","Katanna","katanna"):
+        p1_redo_weapons = input("""Katanna
     
     Dexerity added to hit:
         Dexerity / 3 (rounded to nearest whole number)
@@ -143,8 +127,8 @@ Remeber you will get more weapons and spells later in the game.
       """.format(round(p1_dex / 3), p1_dex * 2 + 30 + p1_strength * 2))
             
     
-        if p1_main in ("3","Three","three","Sword","sword"):
-            p1_redo_weapons = input("""Sword
+    if p1_main in ("3","Three","three","Sword","sword"):
+        p1_redo_weapons = input("""Sword
     Strength added to hit :
         None
     
@@ -172,45 +156,45 @@ Remeber you will get more weapons and spells later in the game.
             
     #P1 back to score
         if p1_main in ("Back","back","b","B"):
-            p1_redo_class = 1
-            p1_redo_weapons = 0
+            p1_func_class()
 
     #P1 incase invalid input
-        if p1_redo_weapons not in ("Y","y","N","n","Back","back","b","B","0"):
-            print("Please use only Y/N")
-            p1_redo_weapons = ("n")
+        elif p1_redo_weapons in ("N","n"):
+            print("Returning to weapon's page")
+            p1_func_weapon()
+
+        else:
+            print("Please only use Y/N")
+            p1_func_weapon()
 
        #P1 keeping weapon going to P2
         if p1_redo_weapons in ("y","Y"):
             p2_redo_class = 1
-    if p2_redo_class in (1,"n","N"):
-        p1_redo_class = 0
-        p2_redo_weapons = 0
-        p2_redo_class = 0
-        p1_redo_weapons = 0
-        print("---PLAYER TWO---")
-        print ("""Health is the ammount of damage your character can take before being knocked out.
+
+def p2_func_class():
+    go_back = input("Continue to player two? Y/N ")
+    if go_back in ("n","N"):
+        print(" ")
+        print("---PLAYER ONE---")
+        p1_func_weapon()
+        go_back = 0
+    
+    if go_back not in ("Y","y","N","n"):
+        p2_func_class()
+        print("Please only use Y or N thank you")
+        print(" ")
+
+    print("---PLAYER TWO---")
+    print ("""Health is the ammount of damage your character can take before being knocked out.
            
 Strength is how good you are with strength weapons and is mainly based on damage.
            
 Dexerity is how good you are with dexerity weapons and how likely you are to get hit by an enemy and it mainly changes how likely you are to hit.
                """)
 
-        print("Player two please allocate 15 levels or less in these 3 stats")
+    print("Player two please allocate 15 levels or less in these 3 stats")
 
         #Back
-        go_back = input("Continue? Y/N ")
-        if go_back in ("n","N"):
-            print(" ")
-            print("---PLAYER ONE---")
-            p1_redo_weapons = ("n")
-            go_back = 0
-            continue
-        if go_back not in ("Y","y","N","n"):
-            p2_redo_class = 1
-            print("Please only use Y or N thank you")
-            print("    ")
-            continue
 
         #Health
         p2_hp =  int(input("""Health: """))
@@ -357,7 +341,14 @@ Remeber you will get more weapons and spells later in the game.
             if p2_redo_weapons in ("Y","y"):
                 break
         
-
+print("""Welcome to my game. This game is a text based fighting game which you choose you starting skills and weapon.
+This game currently only has one boss and two tiles but there might be more weapons, more tiles, more bosses, more skills and a magic system coming soon!
+This game needs and saves no personal data so you don't have to worry what so ever about your safety.
+This game is also unfinshed but more will probabley be coming soon!
+      """)
+while start not in("y"):
+    start = input("Are you ready Y/N ")
+    p1_func_class()
 #Map
 players_down = 0
 time = 16

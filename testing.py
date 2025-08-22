@@ -1,3 +1,7 @@
+
+def greet():
+    print("no way!")
+
 test = 1
 time = 6
 print(test)
@@ -25,6 +29,9 @@ R  4     [{}][{}][{}]     N    T
                        S
            WATER
 """.format(time,c1,b2,c2,d2,a3,b3,c3,d3,e3,b4,c4,d4,c5))
+
+
+greet()
 
 lock = 1
 while lock == 1:
