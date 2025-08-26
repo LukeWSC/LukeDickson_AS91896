@@ -4,81 +4,13 @@ import random
 start = ("n")
 player = 1
 not_intro = ("n")
-#Choosing class
-def p1_func_class():
-    print("---PLAYER ONE---")
-    print ("""Health is the ammount of damage your character can take before being knocked out.
-           
-Strength is how good you are with strength weapons and is mainly based on damage.
-           
-Dexerity is how good you are with dexerity weapons and how likely you are to get hit by an enemy and it mainly changes how likely you are to hit.
-               """)
+p1_stats = ["0","0","0"]
+p2_stats = ["0","0","0"]
+p1_redo_weapons = 0
 
-    print("Player one please allocate 15 levels or less in these 3 stats")
-        
-    #Health
-    p1_hp =  int(input("""Health: """))
-    if p1_dex not in range (0,16):
-            print ("""Please put numbers between 0-15
-                   """)
-            p1_func_class()
-    else:
-            print ("""Please put in usable variables
-                   """)
-            p1_func_class()
-
-
-    #Strength
-    p1_strength = int(input("""Strength: """))
-    if p1_dex not in range (0,16):
-            print ("""Please put numbers between 0-15
-                   """)
-            p1_func_class()
-    else:
-            print ("""Please put in usable variables
-                   """)
-            p1_func_class()
-
-
-    #Dexerity
-    p1_dex = int(input("""Dexerity: """))
-    if p1_dex not in range (0,16):
-            print ("""Please put numbers between 0-15
-                   """)
-            p1_func_class()
-    else:
-            print ("""Please put in usable variables
-                   """)
-            p1_func_class()
-
-
-    #Calculate level and redo if to high
-    p1_level = p1_hp + p1_strength + p1_dex
-    if p1_level >= 16:
-        print("""Please keep your total number of points across your stats under 26
-                  """)
-        if p1_level <= 15:
-
-
-#Player 1 choosing main weapon
-            print(""" """)
-            p1_func_weapon()
-def p1_func_weapon():
-    p1_main = input("""Player one please enter the number of the weapon to choose your main weapon.
-When you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another.
-Remeber you will get more weapons and spells later in the game.
-    
-    1 Great Axe
-        
-    2 Katanna 
-         
-    3 Sword
-        
-    Back?
-        
-            What do you choose? """)
-    if p1_main in ("1","One","one","Great axe","great axe","axe","Axe"):
-        p1_redo_weapons = input("""Great axe
+#GREAT AXES
+def p1_great_axe(p1_redo_weapons):
+    return p1_redo_weapons == input("""Great axe
     Dexerity added to hit
         Dexerity / 4 + 1
     
@@ -99,10 +31,35 @@ Remeber you will get more weapons and spells later in the game.
         {}
     
     Keep weapon? Y/N 
-      """.format(round(p1_strength / 4) + 1, p1_strength * 5 + 45))
+      """.format(round(p1_stats[1] / 4) + 1, p1_stats[1] * 5 + 45))
+    
+def p2_great_axe(p2_redo_weapons):
+    return p2_redo_weapons == input("""Great axe
+    Dexerity added to hit
+        Dexerity / 4 + 1
+    
+    Random damage:
+        30 to 60
+                      
+    Strength added to damage:
+        Strength x 5
+                                    
+    Dexerity added to damage:
+        None
+    
+    Player one:
+    Your bonus to hit
+        {}
+                      
+    Average damage
+        {}
+    
+    Keep weapon? Y/N 
+      """.format(round(p2_stats[1] / 4) + 1, p2_stats[1] * 5 + 45))
 
-    if p1_main in ("2","Two","two","Katanna","katanna"):
-        p1_redo_weapons = input("""Katanna
+#KATANNA
+def p1_katanna(p1_redo_weapons):
+    return p1_redo_weapons == input("""Katanna
     
     Dexerity added to hit:
         Dexerity / 3 (rounded to nearest whole number)
@@ -124,11 +81,36 @@ Remeber you will get more weapons and spells later in the game.
         {}
     
     Keep weapon? Y/N 
-      """.format(round(p1_dex / 3), p1_dex * 2 + 30 + p1_strength * 2))
-            
+      """.format(round(p1_stats[2] / 3), p1_stats[2] * 2 + 30 + p1_stats[1] * 2))
     
-    if p1_main in ("3","Three","three","Sword","sword"):
-        p1_redo_weapons = input("""Sword
+def p2_katanna(p2_redo_weapons):
+    return p2_redo_weapons == input("""Katanna
+    
+    Dexerity added to hit:
+        Dexerity / 3 (rounded to nearest whole number)
+    
+    Random damage:
+        15 to 50
+                      
+    Strength added to damage:
+        Strength x 2
+    
+    Dexerity added to damage:
+        Dexerity x 2
+    
+    Player one:
+    Your bonus to hit
+        {}
+                      
+    Average damage
+        {}
+    
+    Keep weapon? Y/N 
+      """.format(round(p2_stats[2] / 3), p2_stats[2] * 2 + 30 + p2_stats[1] * 2))
+
+#SWORDS
+def p1_sword(p1_redo_weapons):
+    return p1_redo_weapons == input("""Sword
     Strength added to hit :
         None
     
@@ -152,92 +134,39 @@ Remeber you will get more weapons and spells later in the game.
         {}
     
     Keep weapon? Y/N 
-      """.format(round(p1_dex / 3), 40 + p1_strength * 3))
-            
-    #P1 back to score
-        if p1_main in ("Back","back","b","B"):
-            p1_func_class()
-
-    #P1 incase invalid input
-        elif p1_redo_weapons in ("N","n"):
-            print("Returning to weapon's page")
-            p1_func_weapon()
-
-        else:
-            print("Please only use Y/N")
-            p1_func_weapon()
-
-       #P1 keeping weapon going to P2
-        if p1_redo_weapons in ("y","Y"):
-            p2_redo_class = 1
-
-def p2_func_class():
-    go_back = input("Continue to player two? Y/N ")
-    if go_back in ("n","N"):
-        print(" ")
-        print("---PLAYER ONE---")
-        p1_func_weapon()
-        go_back = 0
+      """.format(round(p1_stats[2] / 3), 40 + p1_stats[1] * 3))
     
-    if go_back not in ("Y","y","N","n"):
-        p2_func_class()
-        print("Please only use Y or N thank you")
-        print(" ")
+def p2_sword(p2_redo_weapons):
+    return p2_redo_weapons == input("""Sword
+    Strength added to hit :
+        None
+    
+    Dexerity added to hit:
+        Dexerity / 3 (rounded to nearest whole number)
+    
+    Random damage:
+        20 to 55
+                      
+    Strength added to damage:
+        Strength x 3
+    
+    Dexerity added to damage:
+        None
+    
+    Player one:
+    Your bonus to hit
+        {}
+                      
+    Average damage
+        {}
+    
+    Keep weapon? Y/N 
+      """.format(round(p2_stats[2] / 3), 40 + p2_stats[1] * 3))
 
-    print("---PLAYER TWO---")
-    print ("""Health is the ammount of damage your character can take before being knocked out.
-           
-Strength is how good you are with strength weapons and is mainly based on damage.
-           
-Dexerity is how good you are with dexerity weapons and how likely you are to get hit by an enemy and it mainly changes how likely you are to hit.
-               """)
 
-    print("Player two please allocate 15 levels or less in these 3 stats")
-
-        #Back
-
-        #Health
-        p2_hp =  int(input("""Health: """))
-        if p2_hp not in range (0,16):
-            print("""Please put in a usable input
-                        """)
-            p2_redo_class = 1
-            continue
-
-        #Strength
-        p2_strength = int(input("""Strength: """))
-        if p2_strength not in range (0,16):
-            print ("""Please put in usable variables
-                   """)
-            p2_redo_class = 1
-            continue
-
-        #Dexerity
-        p2_dex = int(input("""Dexerity: """))
-        if p2_dex not in range (0,16):
-            print ("""Please put in usable variables
-                   """)
-            p2_redo_class = 1
-            continue
-
-        #Calculate level and redo if to high
-        p2_level = p2_hp + p2_strength + p2_dex
-        if p2_level > 16:
-            print("Please keep your total number of points across your stats under 26")
-            p2_redo_class = 1
-            print(""" """)
-        if p2_level <= 15:
-            p2_redo_weapons = ("N")
-            print(""" """)
-            
-
-    #P2 choosing staring weapon
-    if p2_redo_weapons in ("N","n","Back","back","b","B"):
-        p1_redo_class = 0
-        p2_redo_weapons = 0
-        p2_redo_class = 0
-        p1_redo_weapons = 0
-        p2_main = input("""Player two please enter the number of the weapon to choose your main weapon.
+#PLAYER TWO CHOOSING WEAPON
+def p2_func_weapon():
+    p2_main = input("""Player two please enter the number of the weapon to choose your main weapon.
 When you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another.
 Remeber you will get more weapons and spells later in the game.
                                     
@@ -251,95 +180,194 @@ Remeber you will get more weapons and spells later in the game.
         
             What do you choose? """)
     
-    #Great axe
-        if p2_main in ("1","One","one","Great Axe","great axe","axe","Axe"):
-            p2_redo_weapons = input("""Great axe    
-    Strength added to hit :
-        Strength / 4
-    
-    Dexerity added to hit:
-        none
-    
-    Random damage:
-        30 to 60
-                      
-    Strength added to damage:
-        Strength x 5
-    
-    Player one:
-    Your bonus to hit
-        {}
-                      
-    Average damage
-        {}
-    
-    Keep weapon? Y/N 
-      """.format(round(p1_strength / 4), p1_strength * 5 + 45))
-            
-        if p2_main in ("2","Two","two","Katanna","katanna"):
-            p2_redo_weapons = input("""Katanna
-    
-    Dexerity added to hit:
-        Dexerity / 3 (rounded to nearest whole number)
-    
-    Random damage:
-        15 to 50
-                      
-    Strength added to damage:
-        Strength x 2
-    
-    Dexerity added to damage:
-        Dexerity x 2
-    
-    Player one:
-    Your bonus to hit
-        {}
-                      
-    Average damage
-        {}
-    
-    Keep weapon? Y/N 
-      """.format(round(p2_dex / 3), p2_dex * 2 + 30 + p2_strength * 2))
-            
-        if p2_main in ("3","Three","three","Sword","sword"):
-            p2_redo_weapons = input("""Sword
-    Strength added to hit :
-        None
-    
-    Dexerity added to hit:
-        Dexerity / 3 (rounded to nearest whole number)
-    
-    Random damage:
-        20 to 55
-                      
-    Strength added to damage:
-        Strength x 3
-    
-    Dexerity added to damage:
-        None
-    
-    Player one:
-    Your bonus to hit
-        {}
-                      
-    Average damage
-        {}
-    
-    Keep weapon? Y/N 
-      """.format(round(p2_dex / 3), 40 + p2_strength * 3))
-            
-        if p2_main in ("Back","back","b","B"):
-            p2_redo_class = 1
-            p2_redo_weapons = 0
-    #P2 incase invalid input
-        if p2_redo_weapons not in ("Y","y","N","n","0"):
-            print("Please use only Y/N")
-            p2_redo_weapons = ("n")
+    #Weapons
+    if p2_main in ("1","One","one","Great axe","great axe","axe","Axe"):
+        p2_great_axe()
 
-        if p2_redo_weapons in ("Y","y"):
-            p2_redo_weapons = input("Are you ready to begin? Y/N ")
-            if p2_redo_weapons in ("Y","y"):
-                break
+    if p2_main in ("2","Two","two","Katanna","katanna"):
+        p2_katanna()
+
+    if p2_main in ("3","Three","three","Sword","sword"):
+        p2_sword()
+            
+
+    if p2_main in ("Back","back","b","B"):
+        p2_func_class()
+    #P2 incase invalid input
+    if p2_redo_weapons not in ("Y","y","N","n","0"):
+        print("Please use only Y/N")
+        p2_func_weapon()
+
+    if p2_redo_weapons in ("Y","y"):
+        p2_redo_weapons = input("Are you ready to begin? Y/N ")
+
+
+#PLAYER TWO CHOOSING STATS
+def p2_func_class():
+    contin = input("Continue to player two? Y/N ")
+    if contin in ("n","N"):
+        print(" ")
+        print("---PLAYER ONE---")
+        contin = 0
+        p1_func_weapon()
+
+    
+    if contin not in ("Y","y","N","n"):
+        print("Please only use Y or N thank you")
+        print(" ")
+        contin = 0
+        p2_func_class()
+
+    
+    if contin in ("y","Y"):
+        print(" ")
+        contin = 0
+        print("---PLAYER TWO---")
+        print ("""Health is the ammount of damage your character can take before being knocked out.
+           
+Strength is how good you are with strength weapons and is mainly based on damage.
+           
+Dexerity is how good you are with dexerity weapons and how likely you are to get hit by an enemy and it mainly changes how likely you are to hit.
+               """)
+
+        print("Player two please allocate 15 levels or less in these 3 stats")
+        print(" ")
+
+        #Health
+        p2_hp =  int(input("""Health: """))
+        if p2_hp not in range (0,16):
+            print("""Please put in a usable input
+                        """)
+            p2_func_class()
+            
+
+        #Strength
+        p2_strength = int(input("""Strength: """))
+        if p2_strength not in range (0,16):
+            print ("""Please put in usable variables
+                   """)
+            p2_func_class()
+
+        #Dexerity
+        p2_dex = int(input("""Dexerity: """))
+        if p2_dex not in range (0,16):
+            print ("""Please put in usable variables
+                   """)
+            p2_func_class()
+
+        #Calculate level and redo if to high
+        p2_level = p2_hp + p2_strength + p2_dex
+        if p2_level > 16:
+            print("Please keep your total number of points across your stats under 26")
+            p2_func_class()
+            print(""" """)
+        if p2_level <= 15:
+            def p2_func_class():
+                print(""" """)
+
+#PLAYER ONE CHOOSING WEAPON
+def p1_func_weapon():
+    print(" ")
+    p1_main = input("""Player one please enter the number of the weapon to choose your main weapon.
+When you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another.
+Remeber you will get more weapons and spells later in the game.
+    
+    1 Great Axe
+        
+    2 Katanna 
+         
+    3 Sword
+        
+    Back?
+        
+            What do you choose? """)
+    
+    if p1_main in ("1","One","one","Great axe","great axe","axe","Axe"):
+        p1_great_axe()
+
+    if p1_main in ("2","Two","two","Katanna","katanna"):
+        p1_katanna()
+    
+    if p1_main in ("3","Three","three","Sword","sword"):
+        p1_sword()
+
+
+    #P1 back to score
+    if p1_main in ("Back","back","b","B"):
+        p1_func_class()
+
+    #P1 incase invalid input
+    elif p1_redo_weapons in ("N","n"):
+        print("Returning to weapon's page")
+        p1_func_weapon()
+
+    else:
+        print("Wrong input")
+        p1_func_weapon()
+
+       #P1 keeping weapon going to P2
+    if p1_redo_weapons in ("y","Y"):
+        p2_func_class()
+
+#PLAYER ONE CHOOSING STATS
+def p1_func_class():
+    print("---PLAYER ONE---")
+    print ("""Health is the ammount of damage your character can take before being knocked out.
+           
+Strength is how good you are with strength weapons and is mainly based on damage.
+           
+Dexerity is how good you are with dexerity weapons and how likely you are to get hit by an enemy and it mainly changes how likely you are to hit.
+               """)
+
+    print("Player one please allocate 15 levels or less in these 3 stats")
+        
+    #Health
+    p1_hp =  int(input("""Health: """))
+    if p1_hp not in range (0,16):
+        print ("""Please put numbers between 0-15
+                   """)
+        p1_func_class()
+    else:
+        print ("""Please put in usable variables
+                   """)
+        p1_func_class()
+
+
+    #Strength
+    p1_strength = int(input("""Strength: """))
+    if p1_strength not in range (0,16):
+        print ("""Please put numbers between 0-15
+                   """)
+        p1_func_class()
+    else:
+        print ("""Please put in usable variables
+                   """)
+        p1_func_class()
+
+
+    #Dexerity
+    p1_dex = int(input("""Dexerity: """))
+    if p1_dex not in range (0,16):
+        print ("""Please put numbers between 0-15
+                   """)
+        p1_func_class()
+    else:
+        print ("""Please put in usable variables
+                   """)
+        p1_func_class()
+
+
+    #Calculate level and redo if to high
+    p1_level = p1_hp + p1_strength + p1_dex
+    if p1_level >= 16:
+        print("""Please keep your total number of points across your stats under 26
+                  """)
+        if p1_level <= 15:
+            print(""" """)
+            p1_func_weapon()
+
+    #P2 choosing staring weapon
+
         
 print("""Welcome to my game. This game is a text based fighting game which you choose you starting skills and weapon.
 This game currently only has one boss and two tiles but there might be more weapons, more tiles, more bosses, more skills and a magic system coming soon!
@@ -349,6 +377,7 @@ This game is also unfinshed but more will probabley be coming soon!
 while start not in("y"):
     start = input("Are you ready Y/N ")
     p1_func_class()
+    print(""" """)
 #Map
 players_down = 0
 time = 16
@@ -382,6 +411,10 @@ playing = 1
 while playing == 1:
 
 #Damage player one
+    if time <= 0:
+        print("You ran out of time thank you for playing more coming soon!")
+        break
+
     if p1_main in ("1","One","one","Great axe","great axe","axe","Axe"):
         p1_to_hit = round(p1_strength / 4)
         p1_base_damage = p1_strength * 5 
@@ -409,11 +442,11 @@ while playing == 1:
     
 
     #C3
-    if player_location == ("c3"):
-        print("Player one is on {} health out of {} and are level {}".format(p1_current_hp, p1_max_health,p1_level))
-        print("Player two is on {} health out of {} and are level {}".format(p2_current_hp, p2_max_health,p1_level))
-        player_location = ("null")
-        print("""
+def c3():
+    print("Player one is on {} health out of {} and are level {}".format(p1_current_hp, p1_max_health,p1_level))
+    print("Player two is on {} health out of {} and are level {}".format(p2_current_hp, p2_max_health,p1_level))
+    player_location = ("null")
+    print("""
                         
        A  B  C  D  E    
    1        [{}]             
@@ -424,35 +457,32 @@ while playing == 1:
                        S
            
 """.format(c1,b2,c2,d2,a3,b3,c3,d3,e3,b4,c4,d4,c5))
-        resting = input("Do you move or rest? ")
-        if resting in ("Rest","rest","Sleep","sleep","R","r","S","s"):
-            players_down = 0
-            p1_current_hp = p1_max_health
-            p2_current_hp = p2_max_health
-            p1_ac = round(p1_dex / 2.5)
-            p2_ac = round(p1_dex / 2.5)
-            time -= 2
-            player_location = ("c2")
-        if resting in ("move","Move","M","m"):
-            direction = input("Where do you go? N/E/S/W ")
-            if direction in ("N","n","North","north"):
-                player_location = ("c2")
-                continue
-            if direction in ("S","s","South","south"):
-                player_location = ("c2")
-                continue
-            if direction in ("E","e","East","east"):
-                player_location = ("c2")
-                continue
-            if direction in ("W","w","West","west"):
-                player_location = ("c2")
-                continue
-            else:
-                print("Please put in a usable variable.")
-                player_location = ("c3")
+    resting = input("Do you move or rest? ")
+    if resting in ("Rest","rest","Sleep","sleep","R","r","S","s"):
+        players_down = 0
+        p1_current_hp = p1_max_health
+        p2_current_hp = p2_max_health
+        p1_ac = round(p1_dex / 2.5)
+        p2_ac = round(p2_dex / 2.5)
+        time -= 2
+        c3()
+    if resting in ("move","Move","M","m"):
+        direction = input("Where do you go? N/E/S/W ")
+        if direction in ("N","n","North","north"):
+            c2()
+
+        if direction in ("S","s","South","south"):
+            c2()
+            
+        if direction in ("E","e","East","east"):
+            c2()
+        
+        if direction in ("W","w","West","west"):
+            c2()
+                
         else:
-                print("Please put in a usable variable.")
-                player_location = ("c3")
+            print("Please put in a usable variable.")
+            c3()
 
 
     #C2
@@ -563,6 +593,7 @@ while playing == 1:
             if players_down >= 2:
                 print("Oh no! You were defeated by the giant lizard better luck next time!")
                 player_location = ("c3")
+                time -= 1
                 enemy_hp = 0
                 players_down = 0
                 p1_current_hp = 1
