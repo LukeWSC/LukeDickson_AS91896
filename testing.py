@@ -1,3 +1,14 @@
+import random
+
+p1_stats = ["9","0","0"]
+if p1_stats[0].isdigit():
+    p1_stats[0] = int(p1_stats[0])
+    print(p1_stats[0])
+else:
+    print("The string is not numeric.")
+
+
+
 
 def greet():
     print("no way!")
