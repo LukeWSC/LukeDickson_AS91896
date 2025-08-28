@@ -29,7 +29,7 @@ def p2_func_weapon():
     print(" ")
     p2_main = input("""Player two please enter the number of the weapon to choose your main weapon.
 When you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another.
-Remeber you will get more weapons and spells later in the game.
+Remember you will get more weapons and spells later in the game.
     
     1 Great Axe
         
@@ -132,9 +132,9 @@ Remeber you will get more weapons and spells later in the game.
         print("Returning to weapon's page")
         p2_func_weapon()
 
-    #P2 keeping weapon going to P2
+    #P2 keeping weapon going to game
     if p2_redo_weapons in ("y","Y"):
-        p2_func_class()
+        print("Thank you for playing more is coming soon!")
         
     elif p2_redo_weapons not in ("y","Y"):
         print(p2_redo_weapons)
@@ -240,6 +240,7 @@ Dexerity is how good you are with dexerity weapons and how likely you are to get
             p2_func_class()
         if p2_level <= 15:
             print(""" """)
+            print("Player one is level: {}".format(p2_level))
             p2_func_weapon()
 
 
@@ -254,7 +255,7 @@ def p1_func_weapon():
     print(" ")
     p1_main = input("""Player one please enter the number of the weapon to choose your main weapon.
 When you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another.
-Remeber you will get more weapons and spells later in the game.
+Remember you will get more weapons and spells later in the game.
     
     1 Great Axe
         
@@ -451,7 +452,7 @@ Dexerity is how good you are with dexerity weapons and how likely you are to get
         p1_func_class()
     if p1_level <= 15:
         print(""" """)
-        print(p1_level)
+        print("Player one is level: {}".format(p1_level))
         p1_func_weapon()
 
     #P2 choosing staring weapon
@@ -462,6 +463,7 @@ def redo_start():
         print(""" """)
         p1_func_class()
     else:
+        print(""" """)
         redo_start()
         
 print("""Welcome to my game. This game is a text based fighting game which you choose you starting skills and weapon.
@@ -496,11 +498,17 @@ c5 = ("B")
 player_location = ("c3")
 
 #P1 stats
+p1_stats[0] = int(p1_stats[0])
+p1_stats[1] = int(p1_stats[1])
+p1_stats[2] = int(p1_stats[2])
 p1_max_health = p1_stats[0] * 5 + 30
 p1_current_hp = p1_max_health
 p1_ac = round(p1_stats[2] / 2.5) + 11
 
 #P2 stats
+p2_stats[0] = int(p2_stats[0])
+p2_stats[1] = int(p2_stats[1])
+p2_stats[2] = int(p2_stats[2])
 p2_max_health = p2_stats[0] * 5 + 30
 p2_current_hp = p2_max_health
 p2_ac = round(p2_stats[2] / 2.5) + 11
@@ -512,7 +520,8 @@ while playing == 1:
 #Damage player one
     if time <= 0:
         print("You ran out of time thank you for playing more coming soon!")
-        break
+        while time <= 0:
+            pass
 
     if p1_main in ("1","One","one","Great axe","great axe","axe","Axe"):
         p1_to_hit = round(p1_stats[1] / 4)
