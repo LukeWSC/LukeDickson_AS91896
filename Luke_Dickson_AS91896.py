@@ -15,7 +15,7 @@ p2_level = 0
 
 #GREAT AXES
 def p1_great_axe():
-    return p1_redo_weapons == input("""Great axe
+    p1_redo_weapons = input("""Great axe
     Dexerity added to hit
         Dexerity / 4 + 1
     
@@ -38,29 +38,7 @@ def p1_great_axe():
     Keep weapon? Y/N 
       """.format(round(p1_stats[1] / 4) + 1, p1_stats[1] * 5 + 45))
     
-def p2_great_axe():
-    return p2_redo_weapons == input("""Great axe
-    Dexerity added to hit
-        Dexerity / 4 + 1
-    
-    Random damage:
-        30 to 60
-                      
-    Strength added to damage:
-        Strength x 5
-                                    
-    Dexerity added to damage:
-        None
-    
-    Player one:
-    Your bonus to hit
-        {}
-                      
-    Average damage
-        {}
-    
-    Keep weapon? Y/N 
-      """.format(round(p2_stats[1] / 4) + 1, p2_stats[1] * 5 + 45))
+
 
 #KATANNA
 def p1_katanna():
@@ -87,31 +65,6 @@ def p1_katanna():
     
     Keep weapon? Y/N 
       """.format(round(p1_stats[2] / 3), p1_stats[2] * 2 + 30 + p1_stats[1] * 2))
-    
-def p2_katanna():
-    p2_redo_weapons = input("""Katanna
-    
-    Dexerity added to hit:
-        Dexerity / 3 (rounded to nearest whole number)
-    
-    Random damage:
-        15 to 50
-                      
-    Strength added to damage:
-        Strength x 2
-    
-    Dexerity added to damage:
-        Dexerity x 2
-    
-    Player one:
-    Your bonus to hit
-        {}
-                      
-    Average damage
-        {}
-    
-    Keep weapon? Y/N 
-      """.format(round(p2_stats[2] / 3), p2_stats[2] * 2 + 30 + p2_stats[1] * 2))
 
 #SWORDS
 def p1_sword():
@@ -141,8 +94,77 @@ def p1_sword():
     Keep weapon? Y/N 
       """.format(round(p1_stats[2] / 3), 40 + p1_stats[1] * 3))
     
-def p2_sword():
-    p2_redo_weapons = input("""Sword
+
+
+
+#PLAYER TWO CHOOSING WEAPON
+def p2_func_weapon():
+    p2_main = input("""Player two please enter the number of the weapon to choose your main weapon.
+When you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another.
+Remeber you will get more weapons and spells later in the game.
+                                    
+        1 Great Axe
+        
+        2 Katanna 
+        
+        3 Sword
+        
+        Back?
+        
+            What do you choose? """)
+    
+    #Weapons
+    if p2_main in ("1","One","one","Great axe","great axe","axe","Axe"):
+        p2_redo_weapons = input("""Great axe
+    Dexerity added to hit
+        Dexerity / 4 + 1
+    
+    Random damage:
+        30 to 60
+                      
+    Strength added to damage:
+        Strength x 5
+                                    
+    Dexerity added to damage:
+        None
+    
+    Player one:
+    Your bonus to hit
+        {}
+                      
+    Average damage
+        {}
+    
+    Keep weapon? Y/N 
+      """.format(round(p2_stats[1] / 4) + 1, p2_stats[1] * 5 + 45))
+
+    if p2_main in ("2","Two","two","Katanna","katanna"):
+        p2_redo_weapons = input("""Katanna
+    
+    Dexerity added to hit:
+        Dexerity / 3 (rounded to nearest whole number)
+    
+    Random damage:
+        15 to 50
+                      
+    Strength added to damage:
+        Strength x 2
+    
+    Dexerity added to damage:
+        Dexerity x 2
+    
+    Player one:
+    Your bonus to hit
+        {}
+                      
+    Average damage
+        {}
+    
+    Keep weapon? Y/N 
+      """.format(round(p2_stats[2] / 3), p2_stats[2] * 2 + 30 + p2_stats[1] * 2))
+
+    if p2_main in ("3","Three","three","Sword","sword"):
+        p2_redo_weapons = input("""Sword
     Strength added to hit :
         None
     
@@ -167,33 +189,6 @@ def p2_sword():
     
     Keep weapon? Y/N 
       """.format(round(p2_stats[2] / 3), 40 + p2_stats[1] * 3))
-
-
-#PLAYER TWO CHOOSING WEAPON
-def p2_func_weapon():
-    p2_main = input("""Player two please enter the number of the weapon to choose your main weapon.
-When you enter the names of the weapons it will tell you more and then you can choose to keep it or choose another.
-Remeber you will get more weapons and spells later in the game.
-                                    
-        1 Great Axe
-        
-        2 Katanna 
-        
-        3 Sword
-        
-        Back?
-        
-            What do you choose? """)
-    
-    #Weapons
-    if p2_main in ("1","One","one","Great axe","great axe","axe","Axe"):
-        p2_great_axe()
-
-    if p2_main in ("2","Two","two","Katanna","katanna"):
-        p2_katanna()
-
-    if p2_main in ("3","Three","three","Sword","sword"):
-        p2_sword()
             
 
     if p2_main in ("Back","back","b","B"):
