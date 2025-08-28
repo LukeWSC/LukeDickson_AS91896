@@ -4,12 +4,17 @@ import random
 start = ("n")
 player = 1
 not_intro = ("n")
-p1_stats = ["0","0","0"]
-p2_stats = ["0","0","0"]
-p1_redo_weapons = 0
+p1_stats = [0,0,0]
+p2_stats = [0,0,0]
+p1_redo_weapons = ("null")
+p2_redo_weapons = ("null")
+p1_main = ("NULL")
+p2_main = ("NULL")
+p1_level = 0
+p2_level = 0
 
 #GREAT AXES
-def p1_great_axe(p1_redo_weapons):
+def p1_great_axe():
     return p1_redo_weapons == input("""Great axe
     Dexerity added to hit
         Dexerity / 4 + 1
@@ -33,7 +38,7 @@ def p1_great_axe(p1_redo_weapons):
     Keep weapon? Y/N 
       """.format(round(p1_stats[1] / 4) + 1, p1_stats[1] * 5 + 45))
     
-def p2_great_axe(p2_redo_weapons):
+def p2_great_axe():
     return p2_redo_weapons == input("""Great axe
     Dexerity added to hit
         Dexerity / 4 + 1
@@ -58,8 +63,8 @@ def p2_great_axe(p2_redo_weapons):
       """.format(round(p2_stats[1] / 4) + 1, p2_stats[1] * 5 + 45))
 
 #KATANNA
-def p1_katanna(p1_redo_weapons):
-    return p1_redo_weapons == input("""Katanna
+def p1_katanna():
+    p1_redo_weapons = input("""Katanna
     
     Dexerity added to hit:
         Dexerity / 3 (rounded to nearest whole number)
@@ -83,8 +88,8 @@ def p1_katanna(p1_redo_weapons):
     Keep weapon? Y/N 
       """.format(round(p1_stats[2] / 3), p1_stats[2] * 2 + 30 + p1_stats[1] * 2))
     
-def p2_katanna(p2_redo_weapons):
-    return p2_redo_weapons == input("""Katanna
+def p2_katanna():
+    p2_redo_weapons = input("""Katanna
     
     Dexerity added to hit:
         Dexerity / 3 (rounded to nearest whole number)
@@ -109,8 +114,8 @@ def p2_katanna(p2_redo_weapons):
       """.format(round(p2_stats[2] / 3), p2_stats[2] * 2 + 30 + p2_stats[1] * 2))
 
 #SWORDS
-def p1_sword(p1_redo_weapons):
-    return p1_redo_weapons == input("""Sword
+def p1_sword():
+    p1_redo_weapons = input("""Sword
     Strength added to hit :
         None
     
@@ -136,8 +141,8 @@ def p1_sword(p1_redo_weapons):
     Keep weapon? Y/N 
       """.format(round(p1_stats[2] / 3), 40 + p1_stats[1] * 3))
     
-def p2_sword(p2_redo_weapons):
-    return p2_redo_weapons == input("""Sword
+def p2_sword():
+    p2_redo_weapons = input("""Sword
     Strength added to hit :
         None
     
@@ -234,36 +239,63 @@ Dexerity is how good you are with dexerity weapons and how likely you are to get
         print(" ")
 
         #Health
-        p2_hp =  int(input("""Health: """))
-        if p2_hp not in range (0,16):
+        p2_stats[0] =  int(input("""Health: """))
+        if p2_stats[0] not in range (0,16):
             print("""Please put in a usable input
                         """)
+            p2_func_class()
+ 
+        if p2_stats[0] in range (0,16):
+            pass
+
+        else:
+            print ("""Please put in usable variables
+                   """)
+            p2_stats[0] = 0
             p2_func_class()
             
 
         #Strength
-        p2_strength = int(input("""Strength: """))
-        if p2_strength not in range (0,16):
+        p2_stats[1] = int(input("""Strength: """))
+        if p2_stats[1] not in range (0,16):
             print ("""Please put in usable variables
                    """)
+            p2_func_class()
+            
+        if p2_stats[1] in range (0,16):
+            pass
+
+        else:
+            print ("""Please put in usable variables
+                   """)
+            p2_stats[1] = 0
             p2_func_class()
 
         #Dexerity
-        p2_dex = int(input("""Dexerity: """))
-        if p2_dex not in range (0,16):
+        p2_stats[2]= int(input("""Dexerity: """))
+        if p2_stats[2] not in range (0,16):
             print ("""Please put in usable variables
                    """)
             p2_func_class()
+            
+        if p2_stats[2] in range (0,16):
+            pass
+
+        else:
+            print ("""Please put in usable variables
+                   """)
+            p2_stats[2] = 0
+            p2_func_class()
 
         #Calculate level and redo if to high
-        p2_level = p2_hp + p2_strength + p2_dex
-        if p2_level > 16:
-            print("Please keep your total number of points across your stats under 26")
-            p2_func_class()
+        p2_level = p2_stats[0] + p2_stats[1] + p2_stats[2]
+        if p2_level >= 16:
+            print("Please keep your total number of points across your stats under 16")
             print(""" """)
+            p2_func_class()
         if p2_level <= 15:
-            def p2_func_class():
-                print(""" """)
+            print(""" """)
+            p2_func_weapon()
 
 #PLAYER ONE CHOOSING WEAPON
 def p1_func_weapon():
@@ -301,13 +333,15 @@ Remeber you will get more weapons and spells later in the game.
         print("Returning to weapon's page")
         p1_func_weapon()
 
-    else:
-        print("Wrong input")
-        p1_func_weapon()
-
-       #P1 keeping weapon going to P2
+    #P1 keeping weapon going to P2
     if p1_redo_weapons in ("y","Y"):
         p2_func_class()
+        
+    elif p1_redo_weapons not in ("y","Y"):
+        print(p1_redo_weapons)
+        print("Wrong input")
+        p2_func_class()
+
 
 #PLAYER ONE CHOOSING STATS
 def p1_func_class():
@@ -322,52 +356,78 @@ Dexerity is how good you are with dexerity weapons and how likely you are to get
     print("Player one please allocate 15 levels or less in these 3 stats")
         
     #Health
-    p1_hp =  int(input("""Health: """))
-    if p1_hp not in range (0,16):
+    p1_stats[0] = int(input("""Health: """))
+    if p1_stats[0] not in range (0,16):
         print ("""Please put numbers between 0-15
                    """)
         p1_func_class()
+
+    if p1_stats[0] in range (0,16):
+        pass
+
     else:
         print ("""Please put in usable variables
                    """)
+        p1_stats[0] = 0
         p1_func_class()
 
 
     #Strength
-    p1_strength = int(input("""Strength: """))
-    if p1_strength not in range (0,16):
+    p1_stats[1] = int(input("""Strength: """))
+    if p1_stats[1] not in range (0,16):
         print ("""Please put numbers between 0-15
                    """)
         p1_func_class()
+
+    if p1_stats[1] in range (0,16):
+        pass
+
     else:
         print ("""Please put in usable variables
                    """)
+        p1_stats[1] = 0
         p1_func_class()
 
 
     #Dexerity
-    p1_dex = int(input("""Dexerity: """))
-    if p1_dex not in range (0,16):
+    p1_stats[2] = int(input("""Dexerity: """))
+    if p1_stats[2] not in range (0,16):
         print ("""Please put numbers between 0-15
                    """)
         p1_func_class()
+        
+    if p1_stats[2] in range (0,16):
+        pass
+
     else:
         print ("""Please put in usable variables
                    """)
+        p1_stats[2] = 0
         p1_func_class()
 
 
     #Calculate level and redo if to high
-    p1_level = p1_hp + p1_strength + p1_dex
+    p1_level = p1_stats[0] + p1_stats[1] + p1_stats[2]
+    print (p1_level)
     if p1_level >= 16:
         print("""Please keep your total number of points across your stats under 26
                   """)
-        if p1_level <= 15:
-            print(""" """)
-            p1_func_weapon()
+        print(""" """)
+        p1_func_weapon()
+    if p1_level <= 15:
+        print(""" """)
+        print(p1_level)
+        p1_func_weapon()
 
     #P2 choosing staring weapon
 
+def redo_start():
+    start = input("Are you ready Y/N ")
+    if start in ("y","Y","Yes","yes"):
+        print(""" """)
+        p1_func_class()
+    else:
+        redo_start()
         
 print("""Welcome to my game. This game is a text based fighting game which you choose you starting skills and weapon.
 This game currently only has one boss and two tiles but there might be more weapons, more tiles, more bosses, more skills and a magic system coming soon!
@@ -376,8 +436,12 @@ This game is also unfinshed but more will probabley be coming soon!
       """)
 while start not in("y"):
     start = input("Are you ready Y/N ")
-    p1_func_class()
-    print(""" """)
+    if start in ("y","Y","Yes","yes"):
+        print(""" """)
+        p1_func_class()
+    else:
+        redo_start()
+
 #Map
 players_down = 0
 time = 16
@@ -397,14 +461,14 @@ c5 = ("B")
 player_location = ("c3")
 
 #P1 stats
-p1_max_health = p1_hp * 5 + 30
+p1_max_health = p1_stats[0] * 5 + 30
 p1_current_hp = p1_max_health
-p1_ac = round(p1_dex / 2.5) + 11
+p1_ac = round(p1_stats[2] / 2.5) + 11
 
 #P2 stats
-p2_max_health = p2_hp * 5 + 30
+p2_max_health = p2_stats[0] * 5 + 30
 p2_current_hp = p2_max_health
-p2_ac = round(p1_dex / 2.5) + 11
+p2_ac = round(p2_stats[2] / 2.5) + 11
 
 
 playing = 1
@@ -416,29 +480,29 @@ while playing == 1:
         break
 
     if p1_main in ("1","One","one","Great axe","great axe","axe","Axe"):
-        p1_to_hit = round(p1_strength / 4)
-        p1_base_damage = p1_strength * 5 
+        p1_to_hit = round(p1_stats[1] / 4)
+        p1_base_damage = p1_stats[1] * 5 
 
     if p1_main in ("2","Two","two","Katanna","katanna"):
-        p1_to_hit = round(p2_dex / 3)
-        p1_base_damage = p2_dex * 2 + p2_strength * 2
+        p1_to_hit = round(p1_stats[2] / 3)
+        p1_base_damage = p1_stats[2] * 2 + p1_stats[1] * 2
 
     if p1_main in ("3","Three","three","Sword","sword"):
-        p1_to_hit = round(p1_dex / 3)
-        p1_base_damage = p1_strength * 3
+        p1_to_hit = round(p1_stats[2] / 3)
+        p1_base_damage = p1_stats[1] * 3
 
 #Damage player two
     if p2_main in ("1","One","one","Great axe","great axe","axe","Axe"):
-        p2_to_hit = round(p2_strength / 4)
-        p2_base_damage = p2_strength * 5 
+        p2_to_hit = round(p2_stats[1] / 4)
+        p2_base_damage = p2_stats[1] * 5 
     
     if p2_main in ("2","Two","two","Katanna","katanna"):
-       p2_to_hit = round(p2_dex / 3)
-       p2_base_damage = p2_dex * 2 + p2_strength * 2
+       p2_to_hit = round(p2_stats[2] / 3)
+       p2_base_damage = p2_stats[2] * 2 + p2_stats[1] * 2
 
     if p2_main in ("3","Three","three","Sword","sword"):
-        p2_to_hit = round(p1_dex / 3)
-        p2_base_damage = p1_strength * 3
+        p2_to_hit = round(p2_stats[2] / 3)
+        p2_base_damage = p2_stats[1] * 3
     
 
     #C3
@@ -462,8 +526,8 @@ def c3():
         players_down = 0
         p1_current_hp = p1_max_health
         p2_current_hp = p2_max_health
-        p1_ac = round(p1_dex / 2.5)
-        p2_ac = round(p2_dex / 2.5)
+        p1_ac = round(p1_stats[2] / 2.5)
+        p2_ac = round(p2_stats[2] / 2.5)
         time -= 2
         c3()
     if resting in ("move","Move","M","m"):
