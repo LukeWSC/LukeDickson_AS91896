@@ -5,6 +5,8 @@ start = ("n")
 player = 1
 p1_stats = ["0","0","0"]
 p2_stats = ["0","0","0"]
+good_comments = ["good job!","well done"]
+bad_comments = ["better luck next time","good try"]
 p1_redo_weapons = ("null")
 p2_redo_weapons = ("null")
 p1_main = ("NULL")
@@ -701,7 +703,7 @@ while playing == 1:
                 print(" ")
                 p1_status = 1
                 if p2_status == 1:
-                    print("Oh no! You were defeated by the giant lizard better luck next time!")
+                    print("Oh no! You were defeated by the giant lizard {}" .format(random.choice(bad_comments)))
                     player_location = ("c3")
                     time -= 1
                     enemy_hp = 0
@@ -730,7 +732,7 @@ while playing == 1:
                 print(" ")
                 p2_status = 1
                 if p1_status == 1:
-                    print("Oh no! You were defeated by the giant lizard better luck next time!")
+                    print("Oh no! You were defeated by the giant lizard {}!".format(random.choice(bad_comments)))
                     player_location = ("c3")
                     time -= 1
                     enemy_hp = 0
@@ -739,7 +741,7 @@ while playing == 1:
                     continue
 
             if enemy_hp <= 0:
-                print("You defeated the giant lizard amazing job!")
+                print("You defeated the giant lizard {}".format(random.choice(good_comments)))
                 print("Thank you for playing more maybe coming soon!")
                 while enemy_hp <= 0:
                     pass
@@ -760,7 +762,7 @@ while playing == 1:
                             p1_current_hp -= enemy_damage
                             print("The giant lizard leaps forward mouth wide open devourering player one! Dealing {} damage and leaving player one on {} health".format(enemy_damage,p1_current_hp))
                         if enemy_to_hit < p1_ac:
-                            print("The giant lizard leaps forward mouth wide but player one dodge's out of the way! Well done!")
+                            print("The giant lizard leaps forward mouth wide but player one dodge's out of the way! {}".format(random.choice(good_comments)))
 
                     else:
                         enemy_to_hit = (random.randrange(1, 20)) + enemy_bonus
@@ -769,7 +771,7 @@ while playing == 1:
                             p1_current_hp -= enemy_damage
                             print("The giant lizard leaps forward mouth wide open devourering player one! Dealing {} damage and leaving player one on {} health".format(enemy_damage,p1_current_hp))
                         if enemy_to_hit < p1_ac:
-                            print("The giant lizard leaps forward mouth wide but player two dodge's out of the way! Good job!")
+                            print("The giant lizard leaps forward mouth wide but player two dodge's out of the way! {}".format(random.choice(good_comments)))
                 
 
                 if ready_to_eat == 0:
