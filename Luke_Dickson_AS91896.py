@@ -235,7 +235,7 @@ Dexerity is how good you are with dexerity weapons and how likely you are to get
             p2_func_class()
         if p2_level <= 15:
             print(""" """)
-            print("Player one is level: {}".format(p2_level))
+            print("Player two is level: {}".format(p2_level))
             p2_func_weapon()
 
 
